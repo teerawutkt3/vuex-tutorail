@@ -1,11 +1,27 @@
 <template>
-    <div class="blog-form">
-        <input type="text" v-model="blog.idx">
-        <input type="text" v-model="blog.title" placeholder="title">&nbsp;
-        <input type="text" v-model="blog.description" placeholder="description">&nbsp;
-        <span v-if="!blog.idx && blog.idx!==0"><button type="button" @click="save">Save</button></span>
-        <span v-else><button type="button" @click="update">Update</button></span>
-        <button type="button" @click="clear">Clear</button>
+
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item md-layout md-gutter"></div>
+        <div class="md-layout-item md-layout md-gutter">
+            <div class="md-layout-item">
+                <md-field>
+                <label>Title</label>
+                <md-input v-model="blog.title"></md-input>
+            </md-field>
+            </div>
+            <div class="md-layout-item">
+                <md-field>
+                <label>Description</label>
+                <md-input v-model="blog.description"></md-input>
+            </md-field>
+            </div>
+            <div class="md-layout-item">
+                <span v-if="!blog.idx && blog.idx!==0"><md-button @click="save" class="md-raised md-primary">Save</md-button></span>
+                <span v-else><md-button @click="update" class="md-raised md-accent">Update</md-button></span>
+                <md-button @click="clear" class="md-raised md-accent">Clear</md-button>
+            </div>
+        </div>
+        <div class="md-layout-item md-layout md-gutter"></div>
     </div>
 </template>
 

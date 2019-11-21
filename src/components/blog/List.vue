@@ -1,26 +1,27 @@
 <template>
-    <div class="blog-list">
-        <table>
-            <thead>
-            <tr>
-                <td>#</td>
-                <td>Title</td>
-                <td>Description</td>
-                <td></td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(item, index) in blog.blogs" :key="index">
-                <td>{{index + 1}}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ item.description }}</td>
-                <td>
-                    <button type="button" @click="deleteRow(index)">delete</button>
-                    <button type="button" @click="updateRow(index)">update</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item  md-size-15 lg-size-15 xl-size-15"></div>
+        <div class="md-layout-item  md-size-70 lg-size-70 xl-size-70">
+            <md-table>
+                <md-table-row>
+                    <md-table-head md-numeric>#</md-table-head>
+                    <md-table-head>Title</md-table-head>
+                    <md-table-head>Description</md-table-head>
+                    <md-table-head></md-table-head>
+                </md-table-row>
+
+                <md-table-row v-for="(item, index) in blog.blogs" :key="index">
+                    <md-table-cell md-numeric>{{index+1}}</md-table-cell>
+                    <md-table-cell>{{item.title}}</md-table-cell>
+                    <md-table-cell>{{item.description}}</md-table-cell>
+                    <md-table-cell>
+                        <md-button @click="deleteRow(index)" class="md-dense md-raised md-accent">Delete</md-button>
+                        <md-button @click="updateRow(index)" class="md-dense md-raised md-primary">Update</md-button>
+                    </md-table-cell>
+                </md-table-row>
+            </md-table>
+        </div>
+        <div class="md-layout-item md-size-15 lg-size-15 xl-size-15"></div>
     </div>
 </template>
 
@@ -46,6 +47,7 @@
             ...mapGetters({
                 blog: 'blog/getBlog',
             }),
-        }
+        },
+
     }
 </script>
