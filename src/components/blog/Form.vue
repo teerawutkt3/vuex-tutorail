@@ -7,14 +7,14 @@
                 <md-field :class="validateClass">
                     <label>Title</label>
                     <md-input v-model="blog.title"></md-input>
-                    <span class="md-error">There is an error</span>
+                    <span class="md-error">Enter title</span>
                 </md-field>
             </div>
             <div class="md-layout-item">
                 <md-field :class="validateClass">
                     <label>Description</label>
                     <md-input v-model="blog.description"></md-input>
-                    <span class="md-error">There is an error</span>
+                    <span class="md-error">Enter Description</span>
                 </md-field>
             </div>
             <div class="md-layout-item">

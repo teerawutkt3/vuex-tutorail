@@ -14,8 +14,11 @@
                     <md-table-cell>{{item.title}}</md-table-cell>
                     <md-table-cell>{{item.description}}</md-table-cell>
                     <md-table-cell>
-                        <md-button @click="deleteRow(index)" class="md-dense md-raised md-accent">Delete</md-button>
-                        <md-button @click="updateRow(index)" class="md-dense md-raised md-primary">Update
+                        <md-button class="md-icon-button md-raised md-dense md-primary" @click="updateRow(index)">
+                            <md-icon>edit</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button md-raised md-dense md-accent" @click="deleteRow(index)">
+                            <md-icon>delete</md-icon>
                         </md-button>
                     </md-table-cell>
                 </md-table-row>
