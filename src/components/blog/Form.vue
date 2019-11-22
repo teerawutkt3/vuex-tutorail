@@ -4,19 +4,22 @@
         <div class="md-layout-item md-layout md-gutter"></div>
         <div class="md-layout-item md-layout md-gutter">
             <div class="md-layout-item">
-                <md-field>
-                <label>Title</label>
-                <md-input v-model="blog.title"></md-input>
-            </md-field>
+                <md-field :class="validateClass">
+                    <label>Title</label>
+                    <md-input v-model="blog.title"></md-input>
+                    <span class="md-error">There is an error</span>
+                </md-field>
             </div>
             <div class="md-layout-item">
-                <md-field>
-                <label>Description</label>
-                <md-input v-model="blog.description"></md-input>
-            </md-field>
+                <md-field :class="validateClass">
+                    <label>Description</label>
+                    <md-input v-model="blog.description"></md-input>
+                    <span class="md-error">There is an error</span>
+                </md-field>
             </div>
             <div class="md-layout-item">
-                <span v-if="!blog.idx && blog.idx!==0"><md-button @click="save" class="md-raised md-primary">Save</md-button></span>
+                <span v-if="!blog.idx && blog.idx!==0"><md-button @click="save"
+                                                                  class="md-raised md-primary">Save</md-button></span>
                 <span v-else><md-button @click="update" class="md-raised md-accent">Update</md-button></span>
                 <md-button @click="clear" class="md-raised md-accent">Clear</md-button>
             </div>
@@ -30,6 +33,12 @@
 
     export default {
         name: 'blog-form',
+        data() {
+            return {
+                validForm: false
+            }
+        },
+
         methods: {
             ...mapActions({
                 setBlog: "blog/setBlog",
@@ -37,11 +46,13 @@
                 clearForm: "blog/clearForm"
             }),
             save() {
-                this.setBlog({
-                    title: this.blog.title,
-                    description: this.blog.description
-                })
-                this.clear()
+                if (!this.validate()) {
+                    this.setBlog({
+                        title: this.blog.title,
+                        description: this.blog.description
+                    })
+                    this.clear()
+                }
             },
             update() {
                 this.updateBlog(this.blog)
@@ -49,12 +60,23 @@
             },
             clear() {
                 this.clearForm()
+                this.validForm = false
+            },
+            validate() {
+                this.validForm = !this.blog.title || !this.blog.description
+                return this.validForm
             }
+
         },
         computed: {
             ...mapGetters({
                 blog: 'blog/getBlog',
-            })
+            }),
+            validateClass() {
+                return {
+                    'md-invalid': this.validForm
+                }
+            }
         }
     }
 </script>

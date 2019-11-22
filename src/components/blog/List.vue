@@ -9,14 +9,14 @@
                     <md-table-head>Description</md-table-head>
                     <md-table-head></md-table-head>
                 </md-table-row>
-
                 <md-table-row v-for="(item, index) in blog.blogs" :key="index">
                     <md-table-cell md-numeric>{{index+1}}</md-table-cell>
                     <md-table-cell>{{item.title}}</md-table-cell>
                     <md-table-cell>{{item.description}}</md-table-cell>
                     <md-table-cell>
                         <md-button @click="deleteRow(index)" class="md-dense md-raised md-accent">Delete</md-button>
-                        <md-button @click="updateRow(index)" class="md-dense md-raised md-primary">Update</md-button>
+                        <md-button @click="updateRow(index)" class="md-dense md-raised md-primary">Update
+                        </md-button>
                     </md-table-cell>
                 </md-table-row>
             </md-table>
