@@ -15,7 +15,7 @@
     import AxiosService from '../common/service/axios-service'
     import LoginService from '../common/service/login-service'
 
-    const axios = new AxiosService()
+    const axiosService = new AxiosService()
     const loginService = new LoginService()
     export default {
         name: 'login',
@@ -28,7 +28,7 @@
         methods: {
 
             testGet() {
-                axios.doGet("/api/user/test", {}).then(res => {
+                axiosService.doGet("/api/user/test", {}).then(res => {
                     console.log("res => ", res)
                      this.dataRequest = res
                 }).catch(err => {
@@ -41,7 +41,7 @@
                     "username": "user01",
                     "password": "password"
                 }
-                axios.doPost("/api/user/testPost", data).then(res => {
+                axiosService.doPost("/api/user/testPost", data).then(res => {
                     console.log("res => ", res)
                     this.dataRequest = res
                 }).catch(err => {
@@ -58,6 +58,7 @@
                 loginService.doLogin("/authenticate", data)
                 this.loginText = 'Login Success'
             },
+
             logout() {
                 console.log("logout...")
                 this.dataRequest = {}
