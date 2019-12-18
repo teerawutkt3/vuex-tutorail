@@ -38,7 +38,7 @@
             },
             testPost() {
                 let data = {
-                    "username": "user01",
+                    "username": "user02",
                     "password": "password"
                 }
                 axiosService.doPost("/api/user/testPost", data).then(res => {
@@ -51,7 +51,7 @@
             },
             login() {
                 let data = {
-                    "username": "user01",
+                    "username": "user03",
                     "password": "password"
                 }
                 this.dataRequest = {}

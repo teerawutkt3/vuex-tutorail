@@ -11,9 +11,6 @@
                         <b-input id="password" placeholder="Password" v-model="data.password"></b-input>
                     </div>
                     <div class="form-group">
-                        <b-input id="confirmPassword" placeholder="Confirm Password" v-model="data.confirmPassword"></b-input>
-                    </div>
-                    <div class="form-group">
                         <b-button size="sm" type="button" variant="success" @click="saveUser">Save</b-button>&nbsp;
                         <b-button to="/user" size="sm" variant="secondary">Back</b-button>
                     </div>
@@ -24,7 +21,7 @@
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapGetters} from "vuex";
 
     export default {
         name: "UserForm",
@@ -33,7 +30,7 @@
                 data: {
                     username: '',
                     password: '',
-                    confirmPassword:''
+                    confirmPassword: ''
                 }
             }
         },
@@ -42,21 +39,32 @@
                 createUser: "user/createUser",
             }),
             saveUser() {
-                if(this.data.username.length==0) {
+                if (this.data.username.length == 0) {
                     alert('Enter Username')
                     return
                 }
-                if(this.data.password.length==0) {
+                if (this.data.password.length == 0) {
                     alert('Enter Password')
                     return
                 }
-                if(this.data.password !== this.data.confirmPassword) {
-                    alert('Password not equals')
-                    return
-                }
                 this.createUser(this.data)
+            },
+        },
+        mounted() {
+            console.log('state: ', this.state.user)
+            this.data = {
+                username: this.state.user.username,
+                password: this.state.user.password,
             }
-        }
+        },
+        // updated(){
+        //  console.log('state: ', this.state.user.username)
+        // },
+        computed: {
+            ...mapGetters({
+                state: 'user/getUser',
+            })
+        },
     }
 </script>
 
