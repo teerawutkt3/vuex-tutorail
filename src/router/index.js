@@ -14,7 +14,12 @@ const routes = [
             {path : 'page1', component:()=> import('../views/page/Page1.vue')},
             {path : 'page2', component:()=> import('../views/page/Page2.vue')}
         ]
-    }
+    },
+
+    // ## User
+    {path: '/user', component: () => import('../views/User')},
+    {path: '/user/form', component: () => import('../components/user/UserForm')},
+
 ]
 
 const router = new VueRouter({

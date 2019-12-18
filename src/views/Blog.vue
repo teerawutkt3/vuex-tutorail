@@ -1,22 +1,23 @@
 <template>
     <div class="blog">
         <h1>Blog</h1>
-        <br>
+        <br/>
         <Form/>
-        <br><br>
+        <br/>
+        <br/>
         <List/>
     </div>
 </template>
 
 <script>
-    import Form from '../components/blog/Form.vue'
-    import List from '../components/blog/List.vue'
+    import Form from "../components/blog/Form.vue";
+    import List from "../components/blog/List.vue";
 
     export default {
-        name: 'blog',
+        name: "blog",
         components: {
             Form,
             List
         }
-    }
+    };
 </script>

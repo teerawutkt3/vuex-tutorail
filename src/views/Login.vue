@@ -1,10 +1,10 @@
 <template>
-    <div class="login">
-        <md-button @click="login" class="md-raised md-primary">Test login</md-button>
-        <md-button @click="logout" class="md-raised md-accent">Test Logout</md-button>
-        <br>
-        <md-button @click="testGet" class="md-raised">Test Http Get</md-button>
-        <md-button @click="testPost" class="md-raised">Test Http Post</md-button>
+    <div class="login mt-2">
+        <b-button @click="login" variant="primary">Test login</b-button>&nbsp;
+        <b-button @click="logout" variant="danger">Test Logout</b-button>
+        <br><br>
+        <b-button @click="testGet" variant="success">Test Http Get</b-button>&nbsp;
+        <b-button @click="testPost" variant="success">Test Http Post</b-button>
         <br><br>
         <p>{{loginText}}</p>
         <p>{{dataRequest}}</p>
@@ -64,8 +64,7 @@
                 this.dataRequest = {}
                 localStorage.removeItem('appToken')
                 this.loginText = 'Logout..'
-            }
-
+            },
         },
         computed: {
             validateClass() {
