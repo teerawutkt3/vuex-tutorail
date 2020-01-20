@@ -1,10 +1,8 @@
 <template>
     <div class="blog">
-        <h1>Blog</h1>
-        <br/>
+        <h1 class="text-center mb-5">Blog</h1>
+
         <Form/>
-        <br/>
-        <br/>
         <List/>
     </div>
 </template>

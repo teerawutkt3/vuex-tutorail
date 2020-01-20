@@ -8,11 +8,12 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
+            <b-nav-item to="/about" href="javascript:void(0)">About</b-nav-item>
+            <b-nav-item to="/auth" href="javascript:void(0)">Authentication</b-nav-item>
+            <b-nav-item to="/page" href="javascript:void(0)">User children router</b-nav-item>
             <b-nav-item to="/blog" href="javascript:void(0)">Blog</b-nav-item>
-            <b-nav-item to="/about" href="javascript:void(0)">About</b-nav-item>            
-            <b-nav-item to="/auth" href="javascript:void(0)">Authentication</b-nav-item>            
-            <b-nav-item to="/page" href="javascript:void(0)">User children router</b-nav-item>            
             <b-nav-item to="/user" href="javascript:void(0)">Users</b-nav-item>
+            <b-nav-item to="/components" href="javascript:void(0)">Components</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->

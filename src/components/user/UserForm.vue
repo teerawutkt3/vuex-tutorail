@@ -11,8 +11,12 @@
                         <b-input id="password" placeholder="Password" v-model="data.password"></b-input>
                     </div>
                     <div class="form-group">
-                        <b-button size="sm" type="button" variant="success" @click="saveUser">Save</b-button>&nbsp;
-                        <b-button to="/user" size="sm" variant="secondary">Back</b-button>
+<!--                        <b-button size="sm" type="button" variant="success" @click="saveUser">Save</b-button>&nbsp;-->
+                        <b-save :click="saveUser"/>
+                        &nbsp;
+                        <b-back :click="back"/>
+
+<!--                        <b-button to="/user" size="sm" variant="secondary">Back</b-button>-->
                     </div>
                 </b-form>
             </b-col>
@@ -22,7 +26,7 @@
 
 <script>
     import {mapActions, mapGetters} from "vuex";
-
+    import router from "../../router";
     export default {
         name: "UserForm",
         data() {
@@ -49,6 +53,9 @@
                 }
                 this.createUser(this.data)
             },
+            back(){
+                router.push({path:'/user'})
+            }
         },
         mounted() {
             console.log('state: ', this.state.user)

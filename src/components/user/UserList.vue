@@ -2,7 +2,7 @@
     <div id="UserList">
         <b-row class="text-right mb-1">
             <b-col cols="12">
-                <b-button  @click="goCreate" size="sm" variant="success">+ Create</b-button>
+                <b-create :click="goCreate"/>
             </b-col>
         </b-row>
         <span id="r"></span>
@@ -27,8 +27,9 @@
                         <td>{{item.createdDate}}</td>
                         <td>{{item.updatedDate}}</td>
                         <td class="text-right">
-                            <b-button size="sm" variant="warning" @click="editUser(index)"><i class="fa fa-pencil-square-o"
-                                                                     aria-hidden="true"></i></b-button>&nbsp;
+                            <b-button size="sm" variant="warning" @click="editUser(index)"><i
+                                    class="fa fa-pencil-square-o"
+                                    aria-hidden="true"></i></b-button>&nbsp;
                             <b-button size="sm" variant="danger" @click="deleteUser(item.id)"><i class="fa fa-trash-o"
                                                                                                  aria-hidden="true"></i>
                             </b-button>
@@ -61,16 +62,16 @@
                 console.log('delete id: ', id)
                 this.removeUser(id)
             },
-            editUser(idx){
-              this.findUserById(idx)
+            editUser(idx) {
+                this.findUserById(idx)
             },
-            goCreate(){
+            goCreate() {
                 this.clearForm()
                 router.push({path: '/user/form'})
             }
         },
         mounted() {
-
+            $("#table-user").dataTable()
             this.getUsers()
         },
         computed: {
@@ -78,10 +79,10 @@
                 state: 'user/getUser',
             })
         },
-        updated() {
-            $("#table-user").dataTable()
-            
-        }
+        // updated() {
+        //     $("#table-user").dataTable()
+        //
+        // }
     }
 </script>
 

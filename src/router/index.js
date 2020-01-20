@@ -12,13 +12,17 @@ const routes = [
         path: '/page', component: () => import('../views/Page'),
         children: [
             {path : 'page1', component:()=> import('../views/page/Page1.vue')},
-            {path : 'page2', component:()=> import('../views/page/Page2.vue')}
+            {path : 'page2', component:()=> import('../views/page/Page2.vue')},
+            {path : 'page3', component:()=> import('../views/page/Page3.vue')}
         ]
     },
 
     // ## User
     {path: '/user', component: () => import('../views/User')},
     {path: '/user/form', component: () => import('../components/user/UserForm')},
+
+    // ## Components
+    {path: '/components', component: () => import('../views/EComponents.vue')},
 
 ]
 
