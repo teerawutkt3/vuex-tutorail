@@ -32,6 +32,7 @@
         data() {
             return {
                 data: {
+                    id:'',
                     username: '',
                     password: '',
                     confirmPassword: ''

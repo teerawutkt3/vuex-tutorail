@@ -21,6 +21,9 @@ const routes = [
     {path: '/user', component: () => import('../views/User')},
     {path: '/user/form', component: () => import('../components/user/UserForm')},
 
+    // ## Role
+    {path: '/role', component: () => import('../views/Role')},    
+
     // ## Components
     {path: '/components', component: () => import('../views/EComponents.vue')},
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="UserList">
+  <div id="RoleList">    
     <b-row class="text-right mb-1">
       <b-col cols="12">
         <b-create :click="goCreate" />
@@ -12,15 +12,15 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>User Id</th>
-              <th>Username</th>
+              <th>Role Id</th>
+              <th>Role name</th>
               <th>Created Date</th>
               <th>Updated Date</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in state.users" :key="index">
+            <!-- <tr v-for="(item, index) in state.users" :key="index">
               <td>{{index+1}}</td>
               <td>{{item.idStr}}</td>
               <td>{{item.username}}</td>
@@ -34,7 +34,7 @@
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </b-button>
               </td>
-            </tr>
+            </tr>-->
           </tbody>
         </table>
       </b-col>
@@ -43,45 +43,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import router from "../../router";
-
-const $ = require("jquery");
 export default {
-  name: "UserList",
-  methods: {
-    ...mapActions({
-      getUsers: "user/getUsers",
-      removeUser: "user/removeUser",
-      findUserById: "user/findUserById",
-      clearForm: "user/clearForm"
-    }),
-    deleteUser(id) {
-      console.log("delete id: ", id);
-      this.removeUser(id);
-    },
-    editUser(idx) {
-      this.findUserById(idx);
-    },
-    goCreate() {
-      this.clearForm();
-      router.push({ path: "/user/form" });
-    }
-  },
-
-  mounted() {
-    this.getUsers();
-  },
-  updated() {
-    $("#table-user").dataTable();
-  },
-  computed: {
-    ...mapGetters({
-      state: "user/getUser"
-    })
-  }
+  name: "role-list",
+  methods: {}
 };
 </script>
-
-<style scoped>
-</style>

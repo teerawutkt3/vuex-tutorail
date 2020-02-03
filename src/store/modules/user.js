@@ -11,12 +11,13 @@ const mutations = {
         axios.doPost('/api/user/generate-user', payload).then(res => {
             state.user = {}
             res.data
-            router.push({path: '/user'})
+            router.push({ path: '/user' })
         })
     },
     FIND_USER_BY_ID(state, idx) {
         state.user = state.users[idx]
-        router.push({path: '/user/form'})
+        console.log('FIND_USER_BY_ID: ', state.user)
+        router.push({ path: '/user/form' })
     }
     ,
     UPDATE_USER(state, payload) {
@@ -26,12 +27,10 @@ const mutations = {
         }
         state.blogs.push({})
         state.blogs.splice(state.blogs.length - 1, 1)
-
     },
     REMOVE_USER(state, id) {
-        axios.doDelete(`/api/user/delete/${id}`).then(res => {
-            console.log('delete: ', res)
-            let idx = state.users.findIndex(e => e.id === id)
+        axios.doDelete(`/api/user/delete/${id}`).then(() => {
+            let idx = state.users.findIndex(e => e.id == id)            
             state.users.splice(idx, 1)
         })
     },
@@ -46,22 +45,22 @@ const mutations = {
     }
 }
 const actions = {
-    createUser: ({commit}, payload) => {
+    createUser: ({ commit }, payload) => {
         commit('CREATE_USER', payload)
     },
-    findUserById: ({commit}, idx) => {
+    findUserById: ({ commit }, idx) => {
         commit('FIND_USER_BY_ID', idx)
     },
-    updateUser: ({commit}, payload) => {
+    updateUser: ({ commit }, payload) => {
         commit('UPDATE_USER', payload)
     },
-    removeUser: ({commit}, id) => {
+    removeUser: ({ commit }, id) => {
         commit('REMOVE_USER', id)
     },
-    getUsers: ({commit}) => {
+    getUsers: ({ commit }) => {
         commit('GET_USERS')
     },
-    clearForm: ({commit}) => {
+    clearForm: ({ commit }) => {
         commit('CLEAR_FORM')
     }
 }

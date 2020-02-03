@@ -57,7 +57,7 @@
                 blog: 'blog/getBlog',
             }),
         },
-        mounted() {
+        updated() {
             $("#blog-table").dataTable({
                 searching: false,
                 "scrollX": true

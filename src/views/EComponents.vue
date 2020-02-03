@@ -3,7 +3,7 @@
 
         <h1 class="mb-4">Components</h1>
         <h3>Buttons</h3>
-        <b-save :click/> &nbsp;
+        <b-save /> &nbsp;
         <b-cancel id="cancel"/> &nbsp;
         <b-back :click="onclickBack"/> &nbsp;
         <b-print id="print"/> &nbsp;

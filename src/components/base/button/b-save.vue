@@ -1,5 +1,5 @@
 <template>
-  <Button name="บันทึก" color="success" :type="type" :id="this.id" :click="this.click" />
+  <Button name="Save" color="success" :type="type" :id="this.id" :click="this.click" />
 </template>
 
 <script>
@@ -10,7 +10,10 @@ export default {
     click: {
       type: Function
     },
-    id: String,
+    id: {
+       type:String,
+      default: 'save'
+    },
     type:{
       type:String,
       default: 'button'
