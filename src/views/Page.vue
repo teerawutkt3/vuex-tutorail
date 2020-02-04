@@ -3,7 +3,6 @@
         <h1>Page children router</h1>
         <b-row class=" mt-1 mb-1 justify-content-center">
             <b-col cols="6">
-
                 <b-form>
                     <b-row>
                         <b-col cols="6" >
