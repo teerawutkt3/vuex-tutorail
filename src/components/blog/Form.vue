@@ -35,8 +35,6 @@
 
     </div>
   </div>
-  <!-- <div class="md-layout-item md-layout md-gutter"></div>
-  </div>-->
 </template>
 
 <script>

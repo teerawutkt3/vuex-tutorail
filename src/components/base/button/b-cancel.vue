@@ -9,7 +9,8 @@
         name: 'b-cancel',
         props: {
             click: {
-                type: Function
+                type: Function,
+                default:()=>{}
             },
             id: String
         },

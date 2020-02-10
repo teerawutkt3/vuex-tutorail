@@ -1,7 +1,8 @@
 <template>
     <div class="card">
         <img v-if="imgShow" class="card-img-top" :src="imgLink" alt="Card image cap">
-        <div class="card-header bg-default" v-if="header">
+        <div class="card-header bg-defulat" v-if="header">
+            <!-- bg-secondary text-white -->
             <slot name="header"></slot>
         </div>
         <div class="card-body">

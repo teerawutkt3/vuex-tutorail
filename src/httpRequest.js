@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const BASE_URL = 'http://localhost:8080/vue-api'
-const BASE_URL = 'http://178.128.222.19:8080/vue-api'
+const BASE_URL = 'http://localhost:8080'
+// const BASE_URL = 'http://178.128.222.19:8080/vue-api'
 const CONTENT_TYPE_JSON = 'application/json'
 // const CONTENT_TYPE_FORM = 'application/x-www-form-urlencoded'
 

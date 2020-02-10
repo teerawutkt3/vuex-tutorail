@@ -8,7 +8,8 @@ export default {
     name:'b-save',
   props: {
     click: {
-      type: Function
+      type: Function,
+      default:()=>{}
     },
     id: {
        type:String,

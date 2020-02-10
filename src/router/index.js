@@ -22,6 +22,7 @@ const routes = [
 
     // ## Role
     {path: '/role', component: () => import('../views/Role')},    
+    {path: '/role/form', component: () => import('../components/role/Form.vue')},    
 
     // ## Components
     {path: '/components', component: () => import('../views/EComponents.vue')},

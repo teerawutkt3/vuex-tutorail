@@ -1,7 +1,7 @@
 <template>
-  <div id="RoleList">    
+  <div id="RoleList">
     <b-row class="text-right mb-1">
-      <b-col cols="12">
+      <b-col cols="12">        
         <b-create :click="goCreate" />
       </b-col>
     </b-row>
@@ -43,8 +43,13 @@
 </template>
 
 <script>
+import router from "../../router";
 export default {
   name: "role-list",
-  methods: {}
+  methods: {
+    goCreate() {
+      router.push({ path: "/role/form" })
+    }
+  }
 };
 </script>

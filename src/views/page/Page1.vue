@@ -16,7 +16,7 @@
                         style="text-shadow: 1px 1px 2px #333;"
                         @sliding-start="onSlideStart"
                         @sliding-end="onSlideEnd"
-                >
+                >            
                     <!-- Text slides with image -->
                     <b-carousel-slide
                             caption="First slide"
