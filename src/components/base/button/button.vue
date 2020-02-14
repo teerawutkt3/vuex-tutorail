@@ -1,5 +1,5 @@
 <template>
-    <b-button size="sm" :type="type" :id="id" :variant="color" @click="click">{{name}}</b-button>
+    <b-button size="sm" :type="type" :id="id" :variant="color" @click="click"><slot></slot></b-button>
 </template>
 
 <script>
@@ -9,8 +9,7 @@
             click: {
                 type: Function,
                 default: ()=>{}
-            },
-            name: String,
+            },            
             color: String,
             id: {
                 type: String,

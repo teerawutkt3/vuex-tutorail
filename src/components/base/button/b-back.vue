@@ -1,5 +1,5 @@
 <template>
-    <Button name="Back" color="secondary" :id="this.id" :click="this.click"/>
+    <Button color="secondary" :id="this.id" :click="this.click">Back</Button>
 </template>
 
 <script>

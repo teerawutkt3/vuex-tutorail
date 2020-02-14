@@ -1,5 +1,5 @@
 <template>
-    <Button name="Delete" color="danger" :id="this.id" :click="this.click" />
+    <Button color="danger" :id="this.id" :click="this.click">Delete</Button>
 </template>
 
 <script>

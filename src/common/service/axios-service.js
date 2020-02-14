@@ -1,6 +1,20 @@
 import HttpRequest from '../../httpRequest'
-
-
+import swal from 'sweetalert'
+const message401 = {
+    title: '401',
+    description: 'unauthenticated',
+    icon: 'error'
+}
+const message405 = {
+    title: '405',
+    description: 'Method not allowed',
+    icon: 'error'
+}
+const messageError = {
+    title: 'Error',
+    description: '',
+    icon: 'error'
+}
 class AxiosService extends HttpRequest {
     STATUS = {
         SUCCESS: 'SUCCESS',
@@ -15,8 +29,13 @@ class AxiosService extends HttpRequest {
                 resolve(res.data)
             }).catch(err => {
                 if (err.response.status === 401) {
+                    swal(message401.title, message401.description, message401.icon)
                     reject("401")
+                } else if (err.response.status === 405) {
+                    swal(message405.title, message405.description, message405.icon)
+                    reject("405")
                 } else {
+                    swal(messageError.title, '' + err, messageError.icon)
                     reject(err)
                 }
             })
@@ -33,15 +52,20 @@ class AxiosService extends HttpRequest {
                 resolve(res.data)
             }).catch(err => {
                 if (err.response.status === 401) {
+                    swal(message401.title, message401.description, message401.icon)
                     reject("401")
+                } else if (err.response.status === 405) {
+                    swal(message405.title, message405.description, message405.icon)
+                    reject("405")
                 } else {
+                    swal(messageError.title, '' + err, messageError.icon)
                     reject(err)
                 }
             })
         })
     }
 
-    doDelete(path){
+    doDelete(path) {
         if (this.getIsDebug()) {
             console.log("Path: ", this.getBaseUrl() + path)
         }
@@ -50,8 +74,13 @@ class AxiosService extends HttpRequest {
                 resolve(res.data)
             }).catch(err => {
                 if (err.response.status === 401) {
+                    swal(message401.title, message401.description, message401.icon)
                     reject("401")
+                } else if (err.response.status === 405) {
+                    swal(message405.title, message405.description, message405.icon)
+                    reject("405")
                 } else {
+                    swal(messageError.title, '' + err, messageError.icon)
                     reject(err)
                 }
             })
