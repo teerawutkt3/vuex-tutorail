@@ -4,29 +4,26 @@
     <b-row class="mt-1 mb-1">
       <b-col cols="5">
         <b-form>
-          <div class="form-group">
-            <b-input id="username" placeholder="Username" v-model="data.username"></b-input>
-          </div>
-          <div class="form-group">
-            <b-input id="password" placeholder="Password" v-model="data.password"></b-input>
-          </div>
-          <b-form-group label="Form-checkbox-group stacked checkboxes">
-            <b-form-checkbox-group
-              v-model="roles"
-              :options="options"
-              value-field="item"
-              text-field="name"
-              stacked
-            ></b-form-checkbox-group>
+           <b-form-group label="Username">
+            <b-input id="username" placeholder="Username" v-model="state.user.username"></b-input>
+           </b-form-group >
+           <b-form-group label="Password" v-if="state.mode">
+            <b-input id="password" placeholder="Password" v-model="state.user.password"></b-input>
+           </b-form-group>
+          <b-form-group label="Confirm Password" v-if="state.mode">
+            <b-input id="confirmPassword" placeholder="Confirm Password" v-model="state.user.confirmPassword" ></b-input>
+          </b-form-group>
+          <b-form-group label="Roles" class="mt-3">
+            <b-form-checkbox-group v-model="state.roles" :options="options" value-field="item" text-field="name" stacked ></b-form-checkbox-group>
           </b-form-group>
 
           <div class="mt-3">
             Selected:
-            <strong>{{ roles }}</strong>
+            <strong>{{ state.roles }}</strong>
           </div>
 
           <div class="form-group">
-            <b-save :click="saveUser" />&nbsp;
+            <b-save :click="saveUser" :disabled="!disableSave" />&nbsp;
             <b-back :click="back" />
           </div>
         </b-form>
@@ -37,6 +34,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import swal from "sweetalert";
 import router from "../../router";
 import AxiosService from "../../common/service/axios-service";
 const axios = new AxiosService();
@@ -44,42 +42,43 @@ export default {
   name: "UserForm",
   data() {
     return {
-      data: {
-        id: "",
-        username: "",
-        password: "",
-        confirmPassword: ""
-      },
-      roles: [],
-      options: [
-        { item: "A", name: "Option A" },
-        { item: "B", name: "Option B" },
-        { item: "D", name: "Option C", notEnabled: true },
-        { item: { d: 1 }, name: "Option D" }
-      ]
+      disableSave: true,           
+      options:[],
+      // roles: []
     };
   },
   methods: {
     ...mapActions({
-      createUser: "user/createUser"
+      createUser: 'user/createUser',
+      setForm: 'user/setForm'
     }),
     saveUser() {
-      if (this.data.username.length == 0) {
-        alert("Enter Username");
+      if (!this.state.user.username) {
+        swal("Validate", "Enter Username", "warning");
         return;
       }
-      if (this.data.password.length == 0) {
-        alert("Enter Password");
+      if (!this.state.user.password&&this.state.mode) {
+        swal("Validate", "Enter Password", "warning");
         return;
       }
-      this.createUser(this.data);
+      if (this.state.user.password != this.state.user.confirmPassword && this.state.mode) {
+        swal("Validate", "Check Password", "warning");
+        return;
+      }
+      if (!this.state.roles) {
+        swal("Select role.", "", "warning");
+        return;
+      }
+      this.createUser({
+        user: this.state.user,
+        roleIds: this.state.roles
+      });
     },
     back() {
       router.push({ path: "/user" });
     },
     getRoleAll() {
-      axios.doGet("/api/role/").then(res => {
-        console.log("getRoleAll: ", res);
+      axios.doGet("/api/role/").then(res => {        
         this.options = [];
         res.data.forEach(element => {
           let role = {};
@@ -92,9 +91,8 @@ export default {
   created() {
     this.getRoleAll();
   },
-  mounted() {
-    console.log("state: ", this.state.user);
-    this.data = {
+  mounted() {    
+    this.form = {
       username: this.state.user.username,
       password: this.state.user.password
     };

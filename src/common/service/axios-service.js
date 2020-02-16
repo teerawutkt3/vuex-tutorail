@@ -2,7 +2,7 @@ import HttpRequest from '../../httpRequest'
 import swal from 'sweetalert'
 const message401 = {
     title: '401',
-    description: 'unauthenticated',
+    description: 'Unauthorized',
     icon: 'error'
 }
 const message405 = {
@@ -28,16 +28,7 @@ class AxiosService extends HttpRequest {
             this.get(path, {}).then(res => {
                 resolve(res.data)
             }).catch(err => {
-                if (err.response.status === 401) {
-                    swal(message401.title, message401.description, message401.icon)
-                    reject("401")
-                } else if (err.response.status === 405) {
-                    swal(message405.title, message405.description, message405.icon)
-                    reject("405")
-                } else {
-                    swal(messageError.title, '' + err, messageError.icon)
-                    reject(err)
-                }
+                this.handleErr(err, reject)
             })
         })
     }
@@ -51,16 +42,7 @@ class AxiosService extends HttpRequest {
             this.post(path, data).then(res => {
                 resolve(res.data)
             }).catch(err => {
-                if (err.response.status === 401) {
-                    swal(message401.title, message401.description, message401.icon)
-                    reject("401")
-                } else if (err.response.status === 405) {
-                    swal(message405.title, message405.description, message405.icon)
-                    reject("405")
-                } else {
-                    swal(messageError.title, '' + err, messageError.icon)
-                    reject(err)
-                }
+                this.handleErr(err, reject)
             })
         })
     }
@@ -73,18 +55,22 @@ class AxiosService extends HttpRequest {
             this.delete(path).then(res => {
                 resolve(res.data)
             }).catch(err => {
-                if (err.response.status === 401) {
-                    swal(message401.title, message401.description, message401.icon)
-                    reject("401")
-                } else if (err.response.status === 405) {
-                    swal(message405.title, message405.description, message405.icon)
-                    reject("405")
-                } else {
-                    swal(messageError.title, '' + err, messageError.icon)
-                    reject(err)
-                }
+                this.handleErr(err, reject)
             })
         })
+    }
+
+    handleErr(err, reject){
+        if (err.response.status === 401) {
+            swal(message401.title, message401.description, message401.icon)
+            reject("401")
+        } else if (err.response.status === 405) {
+            swal(message405.title, message405.description, message405.icon)
+            reject("405")
+        } else {
+            swal(messageError.title, '' + err, messageError.icon)
+            reject(err)
+        }
     }
 
 }

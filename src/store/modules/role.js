@@ -1,17 +1,16 @@
 import AxiosService from '../../common/service/axios-service'
 import swal from 'sweetalert'
 const axios = new AxiosService()
-const initState = {
-    id: '',
-    roleCode: '',
-    roleName: '',
-    description: ''
-}
 const state = {
-    role: initState
+    role: {
+        id: '',
+        roleCode: '',
+        roleName: '',
+        description: ''
+    }
 }
 const mutations = {
-    FIND_ROLE_BY_ID(state, roleId) {        
+    FIND_ROLE_BY_ID(state, roleId) {
         axios.doGet(`/api/role/${roleId}`).then(res => {
             if (res.status == 'SUCCESS') {
                 state.role = res.data
@@ -20,14 +19,22 @@ const mutations = {
             }
         })
     },
-    CLEAR_FORM(state) {
-        let id = state.role.id
-        state.role = initState
+    CLEAR_FORM(istate) {
+        let id = istate.role.id
+        state.role = {
+            roleCode: '',
+            roleName: '',
+            description: ''
+        }
         state.role.id = id
-        console.log("state", state.role)
     },
-    NEW_FORM(state){
-        state.role = initState
+    NEW_FORM() {
+        state.role = {
+            id: '',
+            roleCode: '',
+            roleName: '',
+            description: ''
+        }
     }
 }
 const actions = {
@@ -42,11 +49,10 @@ const actions = {
     }
 }
 const getters = {
-    getRole: (state) => {        
+    getRole: (state) => {
         return state.role
     },
 }
-
 export default {
     namespaced: true,
     state,

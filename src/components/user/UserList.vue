@@ -1,7 +1,10 @@
 <template>
   <div id="UserList">
-    <b-row class="text-right mb-1">
-      <b-col cols="12">
+    <b-row class="mb-1">
+      <b-col cols="8">
+        <h1>User</h1>
+      </b-col>
+      <b-col cols="4" class="text-right">
         <b-create :click="goCreate" />
       </b-col>
     </b-row>
@@ -12,7 +15,6 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>User Id</th>
               <th>Username</th>
               <th class="text-center">Created Date</th>
               <th class="text-center">Updated Date</th>
@@ -22,15 +24,14 @@
           <tbody>
             <tr v-for="(item, index) in userList" :key="index">
               <td>{{index+1}}</td>
-              <td>{{item.idStr}}</td>
               <td>{{item.username}}</td>
               <td class="text-center">{{item.createdDateStr}}</td>
               <td class="text-center">{{item.updatedDateStr}}</td>
               <td class="text-right">
-                <b-button size="sm" variant="warning" @click="editUser(index)">
+                <b-button size="sm" variant="warning" @click="editUser(item.idStr)">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </b-button>&nbsp;
-                <b-button size="sm" variant="danger" @click="deleteUser(item.idStr)">
+                <b-button size="sm" variant="danger" @click="deleteUser(item.username, item.idStr)">
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </b-button>
               </td>
@@ -45,7 +46,8 @@
 <script>
 import router from "../../router";
 import AxiosService from "../../common/service/axios-service";
-
+import {mapActions} from "vuex";
+import swal from "sweetalert";
 const axios = new AxiosService();
 const $ = require("jquery");
 
@@ -57,61 +59,54 @@ export default {
     };
   },
   methods: {
-    deleteUser(id) {
-      console.log("delete id: ", id);
-      axios.doDelete(`/api/user/delete/${id}`).then(() => {
-        this.getUserAll();        
+    ...mapActions({
+      newForm: "user/newForm",
+      findUserById: 'user/findUserById'
+    }),
+    deleteUser(username, id) {      
+      swal({
+        title: "Are you sure?",
+        text: "delete user : " + username,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          axios.doDelete(`/api/user/${id}`).then(() => {
+            this.getUserAll();
+          });
+        }
       });
     },
-    editUser(idx) {
-      // this.findUserById(idx);
-      console.log(idx);
+    editUser(id) {
+      this.findUserById(id);      
     },
     goCreate() {
-      // this.clearForm();
+      this.newForm()
       router.push({ path: "/user/form" });
     },
     getUserAll() {
-      axios.doGet("/api/user/user-all").then(res => {
-        console.log("component getUserAll: ", res.data);
+      axios.doGet("/api/user/").then(res => {        
         this.userList = res.data;
-        this.destroyDataTable()
+        this.destroyDataTable();
       });
     },
     callDataTable() {
-      $("#table-user").dataTable({ scrollX: true })
+      $("#table-user").dataTable({ scrollX: true });
     },
     destroyDataTable() {
-      $("#table-user").dataTable().fnDestroy()
+      $("#table-user")
+        .dataTable()
+        .fnDestroy();
     }
   },
 
-  beforeCreate() {
-    console.log("beforeCreate");
-  },
-  created() {
-    console.log("created");
+  created() {    
     this.getUserAll();
   },
-  beforeMount() {
-    console.log("beforeMount");
+  updated() {    
+    this.callDataTable();
   },
-  mounted() {
-    console.log("mounted");
-  },
-  beforeUpdate() {
-    console.log("beforeUpdate");
-  },
-  updated() {
-    console.log("updated");
-    this.callDataTable()
-  },
-  beforeDestroy() {
-    console.log("updated");
-  },
-  destroyed() {
-    console.log("updated");
-  }  
 };
 </script>
 
