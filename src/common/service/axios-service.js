@@ -1,5 +1,6 @@
 import HttpRequest from '../../httpRequest'
 import swal from 'sweetalert'
+import router from '../../router/index'
 const message401 = {
     title: '401',
     description: 'Unauthorized',
@@ -62,7 +63,18 @@ class AxiosService extends HttpRequest {
 
     handleErr(err, reject){
         if (err.response.status === 401) {
-            swal(message401.title, message401.description, message401.icon)
+            swal({
+                title: `Session timeout ${message401.title}`,
+                text: "login agin ",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(willDelete => {
+                if (willDelete) {
+                    router.push({ path: 'auth' })
+                }
+            });
+            //swal(message401.title, message401.description, message401.icon)
             reject("401")
         } else if (err.response.status === 405) {
             swal(message405.title, message405.description, message405.icon)
@@ -71,6 +83,10 @@ class AxiosService extends HttpRequest {
             swal(messageError.title, '' + err, messageError.icon)
             reject(err)
         }
+    }
+
+    processErr(msg){
+        swal('Process error', msg, 'error')
     }
 
 }

@@ -12,40 +12,39 @@ const state = {
         confirmPassword: ''
     },
     roles: [],
-    users: []
+    users: [],
+    profile: {
+        username: '',
+        roles: []
+    }
 }
 const mutations = {
     CREATE_USER(state, payload) {
         // ==> Save User
         axios.doPost('/api/user/', payload).then(res => {
-            state.user = {}
+            //state.user = {}
             let user = res.data
             //==> Assign role
             if (res.status == 'SUCCESS') {
                 swal('Save User', `${user.username}`, 'success')
                 router.push({ path: '/user' })
+            } else {
+                axios.processErr(res.message)
             }
         })
     },
     FIND_USER_BY_ID(state, id) {
-        axios.doGet(`/api/user/${id}`).then(res=>{
+        axios.doGet(`/api/user/${id}`).then(res => {
             state.user = res.data
             state.user.password = ''
             state.user.confirmPassword = ''
             state.mode = false
-            axios.doGet(`/api/role-assignment/findByUserId/${state.user.id}`).then(res=>{    
-                state.roles = res.data        
+            axios.doGet(`/api/role-assignment/findByUserId/${state.user.id}`).then(res => {
+                console.log("assign : ", res)
+                state.roles = res.data
             })
-        })                
+        })
         router.push({ path: '/user/form' })
-    },
-    UPDATE_USER(state, payload) {
-        state.blogs[payload.idx] = {
-            title: payload.title,
-            description: payload.description
-        }
-        state.blogs.push({})
-        state.blogs.splice(state.blogs.length - 1, 1)
     },
     REMOVE_USER(state, id) {
         axios.doDelete(`/api/user/${id}`).then(() => {
@@ -53,7 +52,7 @@ const mutations = {
             state.users.splice(idx, 1)
         })
     },
-    GET_USERS(state) {        
+    GET_USERS(state) {
         axios.doGet('/api/user/').then(res => {
             state.users = res.data
         })
@@ -64,10 +63,43 @@ const mutations = {
     CLEAR_FORM(state) {
         state.user = {}
     },
-    NEW_FORM() {
-        state.user = {}
+    NEW_FORM(state) {
+        state.mode = true
+        state.user = {
+            id: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
+        }
         state.roles = []
     },
+    GET_PROFILE() {
+        axios.doGet("/api/user/profile").then(res => {
+            if (res.status == 'SUCCESS') {
+                state.profile.username = res.data.username,
+                    state.profile.roles = res.data.roles
+            }
+        }).catch(err => {
+            if (axios.getIsDebug)
+                console.log('Get Proflie error!', err);
+        })
+    },
+    CLEAR_STATE_ALL(state) {
+        state.mode = true
+        state.user = {
+            id: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
+        }
+        state.roles = []
+        state.users = []
+        state.profile = {
+            username: '',
+            roles: []
+        }
+
+    }
 }
 const actions = {
     createUser: ({ commit }, payload) => {
@@ -75,9 +107,6 @@ const actions = {
     },
     findUserById: ({ commit }, idx) => {
         commit('FIND_USER_BY_ID', idx)
-    },
-    updateUser: ({ commit }, payload) => {
-        commit('UPDATE_USER', payload)
     },
     removeUser: ({ commit }, id) => {
         commit('REMOVE_USER', id)
@@ -93,11 +122,16 @@ const actions = {
     },
     newForm: ({ commit }) => {
         commit('NEW_FORM')
+    },
+    getProfile: ({ commit }) => {
+        commit('GET_PROFILE')
+    },
+    clearStateAll: ({ commit }) => {
+        commit('CLEAR_STATE_ALL')
     }
 }
 const getters = {
     getUser: (state) => {
-        console.log('state: ', state)
         return state
     },
 }

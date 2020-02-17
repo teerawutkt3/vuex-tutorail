@@ -86,6 +86,9 @@ export default {
           this.options.push(role);
         });
       });
+    },
+    getState(){
+      console.log("this state => ", this.state)
     }
   },
   created() {
@@ -97,10 +100,13 @@ export default {
       password: this.state.user.password
     };
   },
+  updated(){
+    this.getState()
+  },
   computed: {
     ...mapGetters({
       state: "user/getUser"
-    })
+    }),            
   }
 };
 </script>

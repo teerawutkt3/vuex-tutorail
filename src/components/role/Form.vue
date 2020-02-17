@@ -60,8 +60,7 @@ export default {
       clearForm: 'role/clearForm'
     }),
     save() {
-      axios.doPost("/api/role/", this.role).then(res => {
-        console.log("res save => ", res);
+      axios.doPost("/api/role/", this.role).then(res => {        
         if (res.status == "SUCCESS") {
           router.push({ path: "/role" });
           swal("Save role", `${this.role.roleName}`, "success");
