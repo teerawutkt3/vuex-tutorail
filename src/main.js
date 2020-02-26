@@ -17,7 +17,8 @@ Vue.use(BootstrapVue)
 //==> Buttons component
 for (let i = 0; i < components.buttons.length; i++)
   Vue.component(components.buttons[i].name, components.buttons[i].component)
-//===> Card component
+
+  //===> Card component
 Vue.component(components.card.name, components.card.component)
 new Vue({
     router,

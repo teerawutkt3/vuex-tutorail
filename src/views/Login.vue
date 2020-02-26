@@ -23,11 +23,11 @@
           <form>
             <div class="form-group">
               <label>User Name</label>
-              <input type="text" v-model="username" class="form-control" placeholder="User Name" />
+              <input type="text" v-model="username" class="form-control" placeholder="Enter Username" />
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" v-model="password" class="form-control" placeholder="Password" />
+              <input type="password" v-model="password" class="form-control" placeholder="Enter Password" />
             </div>
             <button type="button" class="btn btn-black" @click="login">Login</button>&nbsp;
             <button type="button" class="btn btn-secondary">Register</button>

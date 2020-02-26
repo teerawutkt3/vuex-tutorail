@@ -63,17 +63,19 @@ class AxiosService extends HttpRequest {
 
     handleErr(err, reject){
         if (err.response.status === 401) {
-            swal({
-                title: `Session timeout ${message401.title}`,
-                text: "login agin ",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
-            }).then(willDelete => {
-                if (willDelete) {
-                    router.push({ path: 'auth' })
-                }
-            });
+            console.log(message401.title + message401.description)
+            // swal({
+            //     title: `Session timeout ${message401.title}`,
+            //     text: "login agin ",
+            //     icon: "warning",
+            //     buttons: true,
+            //     dangerMode: true
+            // }).then(willDelete => {
+            //     if (willDelete) {
+            //         router.push({ path: 'auth' })
+            //     }
+            // });
+            router.push({ path: '/auth' })
             //swal(message401.title, message401.description, message401.icon)
             reject("401")
         } else if (err.response.status === 405) {

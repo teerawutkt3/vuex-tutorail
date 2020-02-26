@@ -28,12 +28,12 @@
               <td class="text-center">{{item.createdDateStr}}</td>
               <td class="text-center">{{item.updatedDateStr}}</td>
               <td class="text-right">
-                <b-button size="sm" variant="warning" @click="editUser(item.idStr)">
+                <a class="text-warning" href="javascript:void(0)" @click="editUser(item.idStr)">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </b-button>&nbsp;
-                <b-button size="sm" variant="danger" @click="deleteUser(item.username, item.idStr)">
+                </a>&nbsp;
+                <a class="text-danger" @click="deleteUser(item.username, item.idStr)">
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </b-button>
+                </a>
               </td>
             </tr>
           </tbody>

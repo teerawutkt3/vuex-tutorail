@@ -1,7 +1,8 @@
 import AxiosService from '../../common/service/axios-service'
+import LoginService from "../../common/service/login-service";
 import router from "../../router";
 import swal from 'sweetalert';
-
+const loginService = new LoginService()
 const axios = new AxiosService()
 const state = {
     mode: true,
@@ -73,15 +74,9 @@ const mutations = {
         }
         state.roles = []
     },
-    GET_PROFILE() {
-        axios.doGet("/api/user/profile").then(res => {
-            if (res.status == 'SUCCESS') {
-                state.profile.username = res.data.username,
-                    state.profile.roles = res.data.roles
-            }
-        }).catch(err => {
-            if (axios.getIsDebug)
-                console.log('Get Proflie error!', err);
+    GET_PROFILE(state) {
+        loginService.getProfile().then(res=>{
+            state.profile = res.data       
         })
     },
     CLEAR_STATE_ALL(state) {
@@ -132,6 +127,7 @@ const actions = {
 }
 const getters = {
     getUser: (state) => {
+        console.log('state user=> ', state)
         return state
     },
 }

@@ -1,5 +1,5 @@
 <template>
-    <Button  color="success" :id="this.id" :click="this.click" >Add</Button>
+    <Button  color="success" :id="this.id" :click="this.click" ><i class="fa fa-plus" aria-hidden="true"></i> Add</Button>
 </template>
 
 <script>

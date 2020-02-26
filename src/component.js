@@ -1,6 +1,5 @@
 import { bSave, bCancel, bBack, bPrint, bDelete, bReset, bCreate, bEdit } from './components/base/button/index'
 import bCard from './components/base/card/card'
-import bFormInput from './components/base/input/input-form-group/input-form-group'
 const buttons = [
     { name: 'b-save', component: bSave },
     { name: 'b-cancel', component: bCancel },
@@ -16,13 +15,8 @@ const card = {
     name: 'b-card', component: bCard
 }
 
-const input = {
-    name: 'b-form-input', component: bFormInput
-}
-
 export default {
     buttons,
-    card,
-    input
+    card
 
 }

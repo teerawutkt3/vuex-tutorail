@@ -28,6 +28,10 @@ const routes = [
         
             // ## Components
             {path: '/components', component: () => import('../views/EComponents.vue')},
+
+            // ## Bill
+            {path: '/bill', component: () => import('../views/Bill.vue')},
+            {path: '/bill-form', component: () => import('../components/bill/BillForm.vue')},
         ],
         
     },

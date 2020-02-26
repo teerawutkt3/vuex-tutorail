@@ -15,21 +15,30 @@ class LoginService extends HttpRequest {
             if (this.getIsDebug())
                 console.log("doLogin : ", res.data.data.token)
             localStorage.setItem('appToken', res.data.data.token)
-            this.getProfile()
+            this.getProfile().then(()=>{
+                router.push({path: '/'})
+            })
         }).catch(err => {
-            swal('Login fail' , '', 'error')
+
+            swal('Login: Error!' , 'Check Username and Password', 'warning')
             if (this.getIsDebug())
                 console.log("err login : ", err)
         })
     }
     getProfile() {
-        axiosService.doGet("/api/user/profile").then(res => {
-            router.push({path: '/'})
-            console.log("res: ", res)
-        }).catch(err => {
-            console.log("errd: ", err)
-            console.log("errd: can't get profile!")
+        return new Promise((resolve) => {
+            this.get("/api/user/profile",{}).then(res => {                            
+                resolve(res.data)
+            }).catch(err => {
+                localStorage.removeItem("appToken")
+                router.push({path: '/auth'})
+                if (axiosService.getIsDebug()){
+                    console.log("errd: ", err)
+                    console.log("errd: can't get profile!")
+                }
+            })
         })
+
      }
 }
 
