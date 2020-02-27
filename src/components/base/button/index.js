@@ -6,7 +6,7 @@ import bDelete from './b-delete'
 import bReset from './b-reset'
 import bCreate from './b-create'
 import bEdit from './b-edit'
-
+import bBaseButton from './button'
 export {
     bSave,
     bCancel,
@@ -15,6 +15,7 @@ export {
     bDelete,
     bReset,
     bCreate,
-    bEdit
+    bEdit,
+    bBaseButton
 }
 

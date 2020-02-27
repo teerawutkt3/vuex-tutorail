@@ -1,5 +1,5 @@
 <template>
-    <b-button size="sm" :type="type" :id="id" :variant="color" @click="click"><slot></slot></b-button>
+    <b-button size="sm" :type="this.type" :id="this.id" :variant="this.color" @click="click"><slot></slot></b-button>
 </template>
 
 <script>

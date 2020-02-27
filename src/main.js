@@ -10,14 +10,18 @@ import 'datatables.net-bs4/js/dataTables.bootstrap4.min'
 import 'font-awesome/css/font-awesome.css'
 import {BootstrapVue} from 'bootstrap-vue'
 import components from './component'
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 
 //==> Buttons component
-for (let i = 0; i < components.buttons.length; i++)
-  Vue.component(components.buttons[i].name, components.buttons[i].component)
-
+for (let i = 0; i < components.buttons.length; i++){
+    Vue.component(components.buttons[i].name, components.buttons[i].component)
+}
+//==> Icon component
+Vue.component(components.icon.name, components.icon.component)
   //===> Card component
 Vue.component(components.card.name, components.card.component)
 new Vue({

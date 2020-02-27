@@ -1,13 +1,5 @@
 <template>
   <div class="login mt-2">
-    <!-- <b-button @click="login" variant="primary">Test login</b-button>&nbsp;
-        <b-button @click="logout" variant="danger">Test Logout</b-button>
-        <br><br>
-        <b-button @click="testGet" variant="success">Test Http Get</b-button>&nbsp;
-        <b-button @click="testPost" variant="success">Test Http Post</b-button>
-        <br><br>
-        <p>{{loginText}}</p>
-    <p>{{dataRequest}}</p>-->
     <div class="sidenav">
       <div class="login-main-text">
         <h2>
@@ -84,7 +76,7 @@ export default {
           router.push({ path: "/home" });
           this.dataRequest = res;
         })
-        .catch(err => {          
+        .catch(err => {
           swal("Login Error", err, "error");
           this.dataRequest = { err: "401" };
           if(axios.getIsDebug)
@@ -108,7 +100,7 @@ export default {
       this.loginText = "Logout..";
     },
 
-    checkLogout() {      
+    checkLogout() {
       if (
         this.stateUser != null &&
         this.stateUser.profile != null &&

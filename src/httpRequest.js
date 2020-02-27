@@ -6,7 +6,6 @@ const CONTENT_TYPE_JSON = 'application/json'
 
 const isDebug = true
 
-
 class HttpRequest {
 
     constructor(url = BASE_URL) {
