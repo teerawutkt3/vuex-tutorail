@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Form</h1>
-        <b-row >
+        <b-row>
             <b-col md="1" sm="1" lg="1">
             </b-col>
             <b-col md="3" sm="2" lg="1">
@@ -27,12 +27,17 @@
                     />
                 </b-form-group>
                 <b-form-group>
-          <textarea
-                  v-model="form.description"
-                  class="form-control"
-                  rows="4"
-                  placeholder="Enter description"
-          ></textarea>
+                      <textarea
+                              v-model="form.description"
+                              class="form-control"
+                              rows="4"
+                              placeholder="Enter description"
+                      ></textarea>
+                </b-form-group>
+                <b-form-group>
+                    <date-picker v-model="time1" valueType="format"></date-picker>
+                    <date-picker v-model="time2" type="datetime"></date-picker>
+                    <date-picker v-model="time3" range></date-picker>
                 </b-form-group>
                 <b-create :click="onSave"/>&nbsp;
                 <b-reset :click="onReset"/>&nbsp;
@@ -41,7 +46,7 @@
         </b-row>
         <b-row class="mt-3 mb-1">
             <b-col cols="1"></b-col>
-            <b-col cols="10"  style="overflow-x:auto;">
+            <b-col cols="10" style="overflow-x:auto;">
                 <table class="table table-sm table-hover nowrap ">
                     <thead>
                     <tr>
@@ -82,7 +87,7 @@
         </b-row>
         <b-row class="mb-5">
             <b-col cols="12" class="text-center">
-                <b-save />
+                <b-save/>
                 &nbsp;
                 <b-back :click="goBack"/>
             </b-col>
@@ -96,13 +101,18 @@
     import router from "../../router";
     import swal from "sweetalert";
     import BSave from "../base/button/b-save";
-
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
+    // import 'vue2-datepicker/locale/th';
     const axios = new AxiosService();
     export default {
         name: "BillForm",
-        components: {BSave},
+        components: {BSave, DatePicker},
         data() {
             return {
+                time1: null,
+                time2: null,
+                time3: null,
                 form: {
                     title: "",
                     description: "",
