@@ -41,6 +41,11 @@ export default {
   animation: showSweetAlert .3s;
   will-change: transform;
 }
+ol.breadcrumb {
+  font-size: 13px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
 
 /*==> font start */
 @import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');

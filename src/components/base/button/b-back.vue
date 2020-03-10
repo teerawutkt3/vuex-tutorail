@@ -1,5 +1,5 @@
 <template>
-    <Button color="secondary" :id="this.id" :click="this.click"><i class="fa fa-reply" aria-hidden="true"></i> Back</Button>
+    <Button color="outline-secondary" :id="this.id" :click="this.click"><i class="fa fa-reply" aria-hidden="true"></i> Back</Button>
 </template>
 
 <script>

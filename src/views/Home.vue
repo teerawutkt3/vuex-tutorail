@@ -1,7 +1,7 @@
 <template>
   <div class="home text-center">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Home logo" src="../assets/home.png">
+    <HelloWorld msg="Welcome to Home Management System"/>
   </div>
 </template>
 
@@ -16,3 +16,8 @@ export default {
   }
 }
 </script>
+<style>
+  body{
+    /*background-image: linear-gradient(to bottom right, #ffdc6e, yellow);*/
+  }
+</style>

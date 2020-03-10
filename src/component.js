@@ -1,4 +1,5 @@
-import { bSave, bCancel, bBack, bPrint, bDelete, bReset, bCreate, bEdit, bBaseButton } from './components/base/button/index'
+import { bSave, bCancel, bBack, bPrint, bDelete, bReset, bCreate, bEdit, bBaseButton,
+    bIconDelete, bIconEdit} from './components/base/button/index'
 import bCard from './components/base/card/card'
 import Icon from './components/base/icon/icon'
 const buttons = [
@@ -11,6 +12,8 @@ const buttons = [
     { name: 'b-create', component: bCreate },
     { name: 'b-edit', component: bEdit },
     { name: 'b-btn', component: bBaseButton },
+    { name: 'b-icon-delete', component: bIconDelete },
+    { name: 'b-icon-edit', component: bIconEdit },
 ]
 
 const card = {

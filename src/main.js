@@ -8,6 +8,7 @@ import 'jquery/dist/jquery.min'
 import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css'
 import 'datatables.net-bs4/js/dataTables.bootstrap4.min'
 import 'font-awesome/css/font-awesome.css'
+import moment from 'moment'
 import {BootstrapVue} from 'bootstrap-vue'
 import components from './component'
 import Vue2Filters from 'vue2-filters'
@@ -24,6 +25,12 @@ for (let i = 0; i < components.buttons.length; i++){
 Vue.component(components.icon.name, components.icon.component)
   //===> Card component
 Vue.component(components.card.name, components.card.component)
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('DD/MM/YYYY')
+    }
+});
 new Vue({
     router,
     store,

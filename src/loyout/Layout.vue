@@ -1,19 +1,22 @@
 <template >
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand to="/" href="javascript:void(0)">Home</b-navbar-brand>
+    <b-navbar toggleable="lg" type="light" variant="light" class="shadow-lg fixed-top">
+      <b-navbar-brand to="/" href="javascript:void(0)">
+        <img src="../assets/home.png" alt="logo" width="40px" >
+      </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+          <b-nav-item to="/" href="javascript:void(0)">Home</b-nav-item>
           <b-nav-item to="/about" href="javascript:void(0)">About</b-nav-item>
-          <b-nav-item to="/auth" href="javascript:void(0)">Authentication</b-nav-item>
-          <b-nav-item to="/page" href="javascript:void(0)">Page children router</b-nav-item>
-          <b-nav-item to="/blog" href="javascript:void(0)">Blog</b-nav-item>
-          <b-nav-item to="/user" href="javascript:void(0)">Users</b-nav-item>
-          <b-nav-item to="/role" href="javascript:void(0)">Role</b-nav-item>
-          <b-nav-item to="/components" href="javascript:void(0)">Components</b-nav-item>
+          <b-nav-item to="/auth" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Authentication</b-nav-item>
+          <b-nav-item to="/page" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Page children router</b-nav-item>
+          <b-nav-item to="/components" v-if="validateRole(role.role.admin)"  href="javascript:void(0)">Components</b-nav-item>
+          <b-nav-item to="/blog" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Blog</b-nav-item>
+          <b-nav-item to="/user" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Users</b-nav-item>
+          <b-nav-item to="/role" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Role</b-nav-item>
           <b-nav-item to="/bill" href="javascript:void(0)">Bill</b-nav-item>
         </b-navbar-nav>
 
@@ -42,7 +45,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-container fluid class="mt-3">
+    <b-container fluid  style="padding-top: 70px">
       <router-view />
     </b-container>
   </div>
@@ -52,8 +55,14 @@ import { mapActions, mapGetters } from "vuex";
 import AxiosService from "../common/service/axios-service";
 import router from "../router";
 import swal from "sweetalert";
+import Role from '../roles'
 const axios = new AxiosService();
 export default {
+  data(){
+    return {
+      role :  Role
+    }
+  },
   methods: {
     ...mapActions({
       getProfile: "user/getProfile",
@@ -77,6 +86,9 @@ export default {
           router.push({ path: "/auth" });
         }
       });
+    },
+    validateRole(role){
+      return this.stateUser.profile.roles.includes(role)
     }
   },
 

@@ -6,20 +6,27 @@
       </b-breadcrumb-item>
       <b-breadcrumb-item active>Bill</b-breadcrumb-item>
     </b-breadcrumb>
-    <b-row>
+    <b-row style="margin-bottom: -40px">
       <b-col cols="7">
         <h1 class="mb-5">Bill No. {{items.length}}</h1>
       </b-col>
       <b-col cols="5" class="text-right">
-        <b-btn :click="goCreate" color="warning"><icon icon="sliders"/> setting</b-btn>
+        <b-btn :click="goCreate" color="outline-warning"><icon icon="fa-sliders"/> setting</b-btn>
       </b-col>
     </b-row>
     <b-row>
       <b-col cols="7">
-        <p><icon icon="credit-card-alt"/> Alert payments</p>
       </b-col>
       <b-col cols="5" class="text-right">
-        <b>Summary: {{summary | currency}}</b>
+        <i class="text-warning">{{nowMonth}}</i>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col cols="7">
+        <p><icon icon="fa-credit-card-alt"/> Alert payments</p>
+      </b-col>
+      <b-col cols="5" class="text-right">
+        <b>Summary of month: {{summary | currency}}</b>
       </b-col>
     </b-row>
 
@@ -29,18 +36,18 @@
           <template v-slot:body>
             <b-row>
               <b-col cols="10">
-                <h4>{{item.title}}</h4>
+                <h5>{{item.title}}</h5>
               </b-col>
               <b-col cols="2" class="text-right">
                 <a @click="deleteBill(item.id, item.title)" class="text-danger"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
               </b-col>
             </b-row>
-            <b class="text-success">${{item.amount}}</b>
+            <b class="text-warning">{{item.amount | currency}}</b>
             <br />
-            {{item.description}}
             <b-row>
-              <b-col class="text-right">
-                <b-btn color="warning" :click="()=>{onPay(item.id, item.title)}">pay</b-btn>
+              <b-col  cols="12" class="text-right">
+                <small class="text-secondary pr-3" @click="()=>{onShowDetail(item.description)}" style="cursor: pointer"><icon :icon="'fa-list-alt'"/> Detail</small>&nbsp;
+                <small class="text-info" @click="()=>{onPay(item.id, item.title)}" style="cursor: pointer"><icon icon="fa-check-square-o"/> Pay</small>&nbsp;
               </b-col>
             </b-row>
           </template>
@@ -55,6 +62,7 @@
 <script>
 import router from "../../router/index";
 import swal from 'sweetalert'
+import moment from 'moment'
 import AxiosService from "../../common/service/axios-service";
 const axios = new AxiosService();
 export default {
@@ -62,7 +70,8 @@ export default {
   data() {
     return {
       summary:0,
-      items: []
+      items: [],
+      nowMonth : moment().format('MMM YYYY'),
     };
   },
   methods: {
@@ -70,7 +79,7 @@ export default {
       router.push({ path: "/bill-form" });
     },
     findAll() {
-      axios.doGet("/api/bill/").then(res => {
+      axios.doGet("/api/bill/bill-active").then(res => {
         this.items = res.data;
         this.summary = 0
         this.items.forEach(e => {
@@ -88,11 +97,14 @@ export default {
           dangerMode: true
       }).then(willDelete => {
           if (willDelete) {
-            axios.doDelete(`/api/bill/${id}`).then(()=>{
+            axios.doGet(`/api/bill/is-show-inactive/${id}`).then(()=>{
               this.findAll()
             })
           }
       });
+    },
+    onShowDetail(description){
+      swal(`Description: ${description}`)
     },
     onPay(id, title){
       console.log(id)
@@ -100,7 +112,7 @@ export default {
       swal({
         title: `Confirm`,
         text: `Pay: ${title}  `,
-        icon: "info",
+        icon: "warning",
         buttons: true,
         successMode: true
       }).then(willDelete => {

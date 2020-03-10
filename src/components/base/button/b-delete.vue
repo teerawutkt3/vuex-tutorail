@@ -1,5 +1,5 @@
 <template>
-    <Button color="danger" :id="this.id" :click="this.click"><i class="fa fa-trash" aria-hidden="true"></i> Delete</Button>
+    <Button color="outline-danger" :id="this.id" :click="this.click"><i class="fa fa-trash" aria-hidden="true"></i> Delete</Button>
 </template>
 
 <script>

@@ -7,7 +7,7 @@
         name: "icon",
         data(){
             return{
-                ic:'fa fa-'+this.icon
+                ic:'fa '+this.icon
             }
         },
         props:{

@@ -51,9 +51,7 @@
     import router from "../../router/";
     import swal from "sweetalert";
     import {mapGetters, mapActions} from "vuex";
-    import Utils from '../../common/utils/utils'
-
-    const utils = new Utils()
+    import Utils from '../../common/utils/Utils'
     const axios = new AxiosService()
     export default {
         name: "role-form",
@@ -80,7 +78,7 @@
 
             },
             validate() {
-              return utils.isNotBlank(this.role.roleCode) && utils.isNotBlank(this.role.roleName)
+              return Utils.isNotBlank(this.role.roleCode) && Utils.isNotBlank(this.role.roleName)
             },
             goBack() {
                 router.push({path: '/role'})

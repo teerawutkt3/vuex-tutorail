@@ -1,5 +1,5 @@
 <template>
-  <Button color="warning" :type="type" :id="this.id" :click="this.click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</Button>
+  <Button color="outline-warning" :type="type" :id="this.id" :click="this.click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</Button>
 </template>
 
 <script>

@@ -7,6 +7,7 @@
                     <b-form-group label="Username">
                         <b-form-input id="username" v-model="state.user.username" :state="checkUserName"
                                       aria-describedby="input-live-help input-live-feedback" placeholder="Username" trim
+                                      :disabled="!state.mode"
                         ></b-form-input>
                     </b-form-group>
                     <b-form-group label="Password" v-if="state.mode">
@@ -15,8 +16,10 @@
                         ></b-form-input>
                     </b-form-group>
                     <b-form-group label="Confirm Password" v-if="state.mode">
-                        <b-form-input id="confirmPassword" v-model="state.user.confirmPassword" :state="checkConfirmPassword"
-                                      aria-describedby="input-live-help input-live-feedback" placeholder="Confirm Password" trim
+                        <b-form-input id="confirmPassword" v-model="state.user.confirmPassword"
+                                      :state="checkConfirmPassword"
+                                      aria-describedby="input-live-help input-live-feedback"
+                                      placeholder="Confirm Password" trim
                         ></b-form-input>
                     </b-form-group>
                     <b-form-group label="Roles" class="mt-3">
@@ -30,12 +33,37 @@
                     </div>
 
                     <div class="form-group">
-                        <b-save :click="saveUser" :disabled="!disableSave"/>&nbsp;
-                        <b-back :click="back"/>
+                        <b-save v-if="auth.canCreate" :click="saveUser" :disabled="!disableSave"/>&nbsp;
+                        <b-back :click="back"/>&nbsp;
+                        <b-btn v-if="state.user.id!=0" :click="openModalPassword" :color="'outline-warning'">
+                            <icon icon="fa-key"/>
+                            Change Password
+                        </b-btn>
                     </div>
                 </b-form>
             </b-col>
         </b-row>
+
+        <!--Modal-->
+        <b-modal id="modal-change-password" hide-footer>
+            <template v-slot:modal-title>
+                New Password
+            </template>
+            <b-form-group>
+                <label>Password: </label>
+                <input type="password" v-model="password" class="form-control form-control-sm">
+            </b-form-group>
+            <b-form-group>
+                <label>Confirm Password: </label>
+                <input type="password" v-model="confirmPassword" class="form-control form-control-sm">
+            </b-form-group>
+            <b-row>
+                <b-col cols="12" class="text-right">
+                    <b-save :click="onChangePassword"/>&nbsp;
+                    <b-cancel :click="()=>{this.$bvModal.hide('modal-change-password')}"/>
+                </b-col>
+            </b-row>
+        </b-modal>
     </div>
 </template>
 
@@ -44,15 +72,20 @@
     import swal from "sweetalert";
     import router from "../../router";
     import AxiosService from "../../common/service/axios-service";
-
+    import RoleUtils from "../../common/utils/RoleUtils";
+    import Role from '../../roles'
     const axios = new AxiosService();
     export default {
         name: "UserForm",
         data() {
             return {
+                auth: {
+                    canCreate : RoleUtils.canCreate(Role.role.admin)
+                },
                 disableSave: true,
                 options: [],
-                // roles: []
+                password: '',
+                confirmPassword: ''
             };
         },
         methods: {
@@ -97,6 +130,35 @@
             },
             getState() {
                 console.log("this state => ", this.state)
+            },
+            openModalPassword() {
+                this.$bvModal.show('modal-change-password')
+            },
+            onChangePassword() {
+                if (this.password.length == 0 || this.password != this.confirmPassword){
+                    this.$bvModal.hide('modal-change-password')
+                    swal({
+                        title: `Error`,
+                        text: `Password Check`,
+                        icon: "error",
+                        successMode: true,
+                    }).then(() => {
+                        this.$bvModal.show('modal-change-password')
+                    });
+                    return false
+                }
+                let data = {
+                    user: this.state.user,
+                    password: this.password
+                }
+                axios.doPost('/api/user/change-password', data).then(res => {
+                    if (res.status == 'SUCCESS') {
+                        this.password = ''
+                        this.confirmPassword = ''
+                        this.$bvModal.hide('modal-change-password')
+                        swal('Save', res.message, 'success')
+                    }
+                })
             }
         },
         created() {
@@ -124,7 +186,7 @@
             checkConfirmPassword() {
                 let checkLength = this.state.user.confirmPassword.length > 3 ? true : false
                 return checkLength && this.state.user.confirmPassword == this.state.user.password
-            }
+            },
         }
     };
 </script>

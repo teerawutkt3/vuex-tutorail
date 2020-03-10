@@ -1,5 +1,5 @@
 <template>
-    <Button color="info" :id="this.id" :click="this.click">Print</Button>
+    <Button color="outline-info" :id="this.id" :click="this.click">Print</Button>
 </template>
 
 <script>

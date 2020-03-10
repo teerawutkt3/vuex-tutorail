@@ -7,6 +7,8 @@ import bReset from './b-reset'
 import bCreate from './b-create'
 import bEdit from './b-edit'
 import bBaseButton from './button'
+import bIconDelete from './b-icon/b-icon-delete'
+import bIconEdit from './b-icon/b-icon-edit'
 export {
     bSave,
     bCancel,
@@ -16,6 +18,8 @@ export {
     bReset,
     bCreate,
     bEdit,
-    bBaseButton
+    bBaseButton,
+    bIconDelete,
+    bIconEdit
 }
 
