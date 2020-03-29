@@ -1,7 +1,7 @@
 <template>
   <div id="UserList">
-    <b-row class="mb-1">
-      <b-col cols="8">
+    <b-row class="mb-1 justify-content-center">
+      <b-col cols="4">
         <h1>User</h1>
       </b-col>
       <b-col cols="4" class="text-right">
@@ -9,8 +9,8 @@
       </b-col>
     </b-row>
     <span id="r"></span>
-    <b-row class>
-      <b-col cols="12">
+    <b-row class="justify-content-center">
+      <b-col cols="8">
         <table class="table table-striped table-sm nowrap" id="table-user" width="100%">
           <thead>
             <tr>

@@ -36,7 +36,7 @@ const routes = [
         
     },
     {path: '/auth', component: () => import('../views/Login')},
-
+    {path: '/register', component: () => import('../views/Register')},
 ]
 
 const router = new VueRouter({

@@ -1,16 +1,16 @@
 <template>
   <div id="RoleList">
-    <b-row class="mb-1">
-      <b-col cols="9">
+    <b-row class=" justify-content-center mb-1">
+      <b-col cols="4">
         <h1>Role</h1>  
       </b-col> 
-      <b-col cols="3" class="text-right">
+      <b-col cols="4" class="text-right">
         <b-create :click="goCreate" />
       </b-col>
     </b-row>
     <span id="r"></span>
-    <b-row class>
-      <b-col cols="12">
+    <b-row class="justify-content-center">
+      <b-col cols="8">
         <table class="table table-striped table-sm nowrap" id="table-user" width="100%">
           <thead>
             <tr>
@@ -18,7 +18,7 @@
               <!-- <th>Role Id</th> -->
               <th>Role code</th>
               <th>Role name</th>
-              <th>Description</th>
+              <!-- <th>Description</th> -->
               <th>Created Date</th>
               <th>Updated Date</th>
               <th></th>
@@ -30,7 +30,7 @@
               <!-- <td>{{item.idStr}}</td> -->
               <td>{{item.roleCode}}</td>
               <td>{{item.roleName}}</td>
-              <td>{{item.description}}</td>
+              <!-- <td>{{item.description}}</td> -->
               <td>{{item.createdDateStr}}</td>
               <td>{{item.updatedDateStr}}</td>
               <td class="text-right">

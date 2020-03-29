@@ -1,6 +1,7 @@
 <template >
   <div>
-    <b-navbar toggleable="lg" type="light" variant="light" class="shadow-lg fixed-top">
+    <!-- light -->
+    <b-navbar toggleable="lg" type="dark" variant="dark" class="shadow-sm fixed-top">
       <b-navbar-brand to="/" href="javascript:void(0)">
         <img src="../assets/home.png" alt="logo" width="40px" >
       </b-navbar-brand>
@@ -45,7 +46,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-container fluid  style="padding-top: 70px">
+    <b-container fluid  style="padding-top: 80px">
       <router-view />
     </b-container>
   </div>

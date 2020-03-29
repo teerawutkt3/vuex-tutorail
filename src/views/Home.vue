@@ -1,6 +1,6 @@
 <template>
   <div class="home text-center">
-    <img alt="Home logo" src="../assets/home.png">
+    <img class="mt-5" alt="Home logo" src="../assets/home.png" width="120px">
     <HelloWorld msg="Welcome to Home Management System"/>
   </div>
 </template>

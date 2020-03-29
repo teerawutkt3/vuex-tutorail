@@ -12,7 +12,7 @@
     <div class="main">
       <div class="col-md-6 col-sm-12">
         <div class="login-form">
-          <form>
+          <form @submit="login($event)">
             <div class="form-group">
               <label>User Name</label>
               <input type="text" v-model="username" class="form-control" placeholder="Enter Username" />
@@ -21,8 +21,8 @@
               <label>Password</label>
               <input type="password" v-model="password" class="form-control" placeholder="Enter Password" />
             </div>
-            <button type="button" class="btn btn-black" @click="login">Login</button>&nbsp;
-            <button type="button" class="btn btn-secondary">Register</button>
+            <button type="submit" class="btn btn-black">Login</button>&nbsp;
+            <button type="button" class="btn btn-secondary" @click="register">Register</button>
           </form>
         </div>
       </div>
@@ -83,7 +83,8 @@ export default {
             console.log("err: " , err);
         });
     },
-    login() {
+    login(e) {
+      e.preventDefault()
       let data = {
         username: this.username,
         password: this.password
@@ -108,6 +109,9 @@ export default {
       ) {
         router.push({ path: "/" });
       }
+    },
+    register(){
+      this.$router.push({path : '/register'})
     }
   },
   created() {
