@@ -12,7 +12,9 @@ import moment from 'moment'
 import {BootstrapVue} from 'bootstrap-vue'
 import components from './component'
 import Vue2Filters from 'vue2-filters'
+import VueNumber from "vue-number-animation";
 
+Vue.use(VueNumber);
 Vue.use(Vue2Filters)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

@@ -32,16 +32,19 @@ const routes = [
             // ## Bill
             {path: '/bill', component: () => import('../views/Bill.vue')},
             {path: '/bill-form', component: () => import('../components/bill/BillForm.vue')},
+           
         ],
         
     },
     {path: '/auth', component: () => import('../views/Login')},
     {path: '/register', component: () => import('../views/Register')},
+    {path: '/covid19', component: () => import('../views/Covid-19')},
+    
 ]
 
 const router = new VueRouter({
-    mode: 'history',
-    // mode: 'hash',
+    // mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,    
     routes
 })

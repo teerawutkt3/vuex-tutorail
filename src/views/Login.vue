@@ -22,7 +22,8 @@
               <input type="password" v-model="password" class="form-control" placeholder="Enter Password" />
             </div>
             <button type="submit" class="btn btn-black">Login</button>&nbsp;
-            <button type="button" class="btn btn-secondary" @click="register">Register</button>
+            <button type="button" class="btn btn-secondary" @click="register">Register</button>&nbsp;
+            <a @click="goCovid19" class="btn btn-warning">Covid-19</a>
           </form>
         </div>
       </div>
@@ -49,11 +50,11 @@ export default {
     };
   },
   methods: {
+    
     testGet() {
       axios
         .doGet("/api/user/test", {})
         .then(res => {
-        //   console.log("res => ", res);
           this.dataRequest = res;
           router.push({ path: "/home" });
         })
@@ -112,6 +113,9 @@ export default {
     },
     register(){
       this.$router.push({path : '/register'})
+    },
+    goCovid19(){
+      this.$router.push({path:'/covid19'})
     }
   },
   created() {

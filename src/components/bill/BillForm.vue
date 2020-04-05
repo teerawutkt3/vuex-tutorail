@@ -159,8 +159,8 @@
               <td class="text-center">{{item.createdDateStr}}</td>
               <td class="text-center">{{item.updatedDateStr}}</td>
               <td class="text-right">
-                <b-icon-edit :click="()=>{onEdit(item.id)}" />&nbsp;
-                <b-icon-delete :click="()=>{onDelete(item.id, item.title)}" />
+                <b-icon-edit v-if="!checkHis(item.title)" :click="()=>{onEdit(item.id)}" />&nbsp;
+                <b-icon-delete v-if="!checkHis(item.title)" :click="()=>{onDelete(item.id, item.title)}" />
               </td>
             </tr>
           </tbody>

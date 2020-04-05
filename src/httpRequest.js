@@ -1,6 +1,7 @@
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080'
-// const BASE_URL = 'http://178.128.222.19:8080/hm-api'
+import Utils from './common/utils/Utils'
+// const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://178.128.222.19:8080/hm-api'
 const CONTENT_TYPE_JSON = 'application/json'
 // const CONTENT_TYPE_FORM = 'application/x-www-form-urlencoded'
 
@@ -43,10 +44,12 @@ class HttpRequest {
     }
 
     getHeader() {
+        let token = localStorage.getItem('appToken')
+        if(Utils.isBlank(token)) token = ''
         return {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': CONTENT_TYPE_JSON,
-            'Authorization': 'Bearer ' + localStorage.getItem('appToken')
+            'Authorization': 'Bearer ' + token
         }
     }
 
@@ -81,7 +84,7 @@ class HttpRequest {
         let promise = null
         switch (type) {
             case 'GET':
-                promise = axios.get(url, {params: data});
+                promise = axios.get(url, { params: data });
                 break
             case 'POST':
                 promise = axios.post(url, data);
@@ -92,12 +95,12 @@ class HttpRequest {
             case 'DELETE':
                 promise = axios.delete(url, data);
                 break
-            default :
-                promise = axios.get(url, {params: data});
+            default:
+                promise = axios.get(url, { params: data });
                 break
         }
         return promise
-    }  
+    }
 }
 
 export default HttpRequest

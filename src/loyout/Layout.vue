@@ -19,6 +19,7 @@
           <b-nav-item to="/user" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Users</b-nav-item>
           <b-nav-item to="/role" v-if="validateRole(role.role.admin)" href="javascript:void(0)">Role</b-nav-item>
           <b-nav-item to="/bill" href="javascript:void(0)">Bill</b-nav-item>
+          <b-nav-item to="/covid19" href="javascript:void(0)">Covid-19</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
