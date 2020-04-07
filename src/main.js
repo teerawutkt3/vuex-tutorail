@@ -13,7 +13,9 @@ import {BootstrapVue} from 'bootstrap-vue'
 import components from './component'
 import Vue2Filters from 'vue2-filters'
 import VueNumber from "vue-number-animation";
+import VueScrollTo from 'vue-scrollto'
 
+Vue.use(VueScrollTo)
 Vue.use(VueNumber);
 Vue.use(Vue2Filters)
 Vue.config.productionTip = false

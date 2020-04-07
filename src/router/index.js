@@ -39,6 +39,7 @@ const routes = [
     {path: '/auth', component: () => import('../views/Login')},
     {path: '/register', component: () => import('../views/Register')},
     {path: '/covid19', component: () => import('../views/Covid-19')},
+    {path: '/teerawut', component: () => import('../views/Teerawut')},
     
 ]
 
