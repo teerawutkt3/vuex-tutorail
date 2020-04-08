@@ -7,18 +7,18 @@
           v-scroll-to="'#page-top'"
           href="#page-top"
         >Teerawut Profile</a>
-        <button
-          class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-warning text-white rounded"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
+<!--        <button-->
+<!--          class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-warning text-white rounded"-->
+<!--          type="button"-->
+<!--          data-toggle="collapse"-->
+<!--          data-target="#navbarResponsive"-->
+<!--          aria-controls="navbarResponsive"-->
+<!--          aria-expanded="false"-->
+<!--          aria-label="Toggle navigation"-->
+<!--        >-->
+<!--          Menu-->
+<!--          <i class="fas fa-bars"></i>-->
+<!--        </button>-->
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
@@ -51,7 +51,7 @@
       <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img
-          class="masthead-avatar mb-5 rounded-circle"
+          class="masthead-avatar mb-5 rounded-circle border border-light"
           src="@/assets/my.jpg"
           alt
         />
@@ -71,7 +71,7 @@
           <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Web Delveloper</p>
+        <p class="masthead-subheading font-weight-light mb-0">Web Developer</p>
       </div>
     </header>
     <!-- Portfolio Section-->
@@ -84,65 +84,15 @@
         <div class="divider-custom">
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon">
-            <i class="fa fa-star-o"></i>
+            <i class="fa fa-code"></i>
           </div>
           <div class="divider-custom-line"></div>
         </div>
         <!-- Skill Grid Items-->
         <div class="row">
           <!-- java -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'javaModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/java.jpeg" width="100%"/>
-            </div>
-          </div>
-          <!-- sql -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'sqlModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/sql.jpg" width="100%"/>
-            </div>
-          </div>
-          <!-- php -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'phpModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/php.png" width="100%"/>
-            </div>
-          </div>
-          <!-- nodejs -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'nodejsModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/nodejs.png" width="100%"/>
-            </div>
-          </div>
-          <!-- js -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'jsModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/js.png" width="100%"/>
-            </div>
-          </div>
-          <!-- css -->
-          <div class="col-md-4 col-lg-2 mb-5">
-            <div class="portfolio-item mx-auto" v-b-modal="'cssModal'">
-              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
-                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
-              </div>
-              <img class="img-fluid" src="../assets/skills/css.png" width="100%"/>
-            </div>
+          <div class="col-4 col-md-4 col-lg-2 mb-5" v-for="(img, index) in imgPath" :key="index">
+            <img v-bind:src="img.src" width="100%">
           </div>
         </div>
       </div>
@@ -176,12 +126,6 @@
         </div>
         <!-- About Section Button-->
         <div class="text-center mt-4">
-          <a
-            class="btn btn-xl btn-outline-light"
-            href="https://startbootstrap.com/themes/freelancer/"
-          >
-            <i class="fas fa-download mr-2"></i>Free Download!
-          </a>
         </div>
       </div>
     </section>
@@ -278,8 +222,10 @@
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Location</h4>
             <p class="lead mb-0">
-              2215 John Daniel Drive
-              <br />Clark, MO 65243
+              Chiang Mai
+              San Sai District
+              <br />
+              50210
             </p>
           </div>
           <!-- Footer Social Icons-->
@@ -472,99 +418,6 @@
         </div>
       </div>
     </div>
-    <!-- modal java -->
-    <b-modal id="javaModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Java
-      </template>
-      <div class="d-block">
-        <b-row class="justify-content-center">
-          <b-col cols="4"><br><img src="../assets/skills/spring.png" width="100%"></b-col>
-          <b-col cols="4"><img src="../assets/skills/struts.jpg" width="100%"></b-col>
-          <b-col cols="4"><img src="../assets/skills/springdata.png" width="100%"></b-col>
-          <b-col cols="4"><img src="../assets/skills/hibernate.png" width="100%"></b-col>
-        </b-row>
-      </div>
-      <div class="text-center mt-5">
-        <b-button @click="$bvModal.hide('javaModal')">Close</b-button>
-      </div>
-    </b-modal>
-    <!-- modal sql -->
-    <b-modal id="sqlModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Sql
-      </template>
-      <div class="d-block text-center">
-        <h3>Hello From This Modal!</h3>
-      </div>
-      <div class="text-center">
-        <b-button class="mt-3" @click="$bvModal.hide('sqlModal')">Close Me</b-button>
-      </div>
-    </b-modal>
-    <!-- modal phpModal -->
-    <b-modal id="phpModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Php
-      </template>
-      <div class="d-block text-center">
-        <div class="d-block text-center">
-            <b-row class="justify-content-center">
-              <b-col cols="4"><img src="../assets/skills/yii2.jpg" width="100%"></b-col>
-            </b-row>
-          </div>
-      </div>
-      <div class="text-center mt-5">
-        <b-button class="" @click="$bvModal.hide('phpModal')">Close</b-button>
-      </div>
-    </b-modal>
-    <!-- modal nodejs -->
-    <b-modal id="nodejsModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Node Js
-      </template>
-        <div class="d-block text-center">
-          <b-row class="justify-content-center">
-            <b-col cols="4"><img src="../assets/skills/adonis.svg" width="100%"></b-col>
-          </b-row>
-        </div>
-      <div class="text-center mt-5">
-        <b-button @click="$bvModal.hide('nodejsModal')">Close</b-button>
-      </div>
-    </b-modal>
-    <!-- modal js -->
-    <b-modal id="jsModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Js
-      </template>
-      <div class="d-block text-center">
-          <div class="d-block text-center">
-            <b-row class="justify-content-center">
-              <b-col cols="4"><img src="../assets/skills/angular.png" width="100%"></b-col>
-              <b-col cols="4"><br><img src="../assets/skills/vuejs.jpeg" width="100%"></b-col>
-            </b-row>
-          </div>
-      </div>
-      <div class="text-center">
-        <b-button class="mt-5" @click="$bvModal.hide('jsModal')">Close</b-button>
-      </div>
-    </b-modal>
-    <!-- modal css -->
-    <b-modal id="cssModal" centered hide-footer>
-      <template v-slot:modal-title>
-        Css
-      </template>
-      <div class="d-block text-center">
-        <div class="d-block text-center">
-          <b-row class="justify-content-center">
-            <b-col cols="4"><img src="../assets/skills/bootstrap.png" width="100%"></b-col>
-            <b-col cols="4"><img src="../assets/skills/semantic.png" width="100%"></b-col>
-          </b-row>
-        </div>
-      </div>
-      <div class="text-center mt-5">
-        <b-button  @click="$bvModal.hide('cssModal')">Close</b-button>
-      </div>
-    </b-modal>
   </div>
 </template>
 <script>
@@ -572,22 +425,46 @@ const $ = require("jquery");
 export default {
   data() {
     return {
+      mainProps: {
+        center: true,
+        fluidGrow: true,
+        blank: true,
+        blankColor: '#bbb',
+        width: 600,
+        height: 400,
+        class: 'my-5'
+      },
       imgPath: [
-        { src: "../assets/skills/bootstrap.png", alt: "bootstrap.png" },
-        { src: "../assets/skills/vuejs.jpeg", alt: "vuejs.jpeg" },
-        { src: "../assets/skills/adonis.svg", alt: "adonis.svg" },
-        { src: "../assets/skills/spring.png", alt: "spring.png" },
-        { src: "../assets/skills/sql.jpg", alt: "sql.jpg" },
-        { src: "../assets/skills/yii2.jpg", alt: "yii2.jpg" },
-        { src: "../assets/skills/angular.png", alt: "angular.png" },
-        { src: "../assets/skills/struts.jpg", alt: "struts.jpg" },
-        { src: "../assets/skills/semantic.png", alt: "semantic.png" },
+        { src: require("@/assets/skills/spring.png"), alt: "spring.png" },
+        { src: require("@/assets/skills/spring-security.png"), alt: "springdata.png"},
+        { src: require("@/assets/skills/springdata.png"), alt: "springdata.png"},
+        { src: require("@/assets/skills/hibernate.png"), alt: "hibernate.png"},
+        { src: require("@/assets/skills/thymeleaf.png"), alt: "hibernate.png"},
+        { src: require("@/assets/skills/jsp.png"), alt: "hibernate.png"},
+        { src: require("@/assets/skills/struts.jpg"), alt: "struts.jpg" },
+        { src: require("@/assets/skills/yii2.jpg"), alt: "yii2.jpg" },
+        { src: require("@/assets/skills/adonis.svg"), alt: "adonis.svg" },
+        { src: require("@/assets/skills/oracle.png"), alt: "sql.jpg" },
+        { src: require("@/assets/skills/mysql.png"), alt: "sql.jpg" },
+        { src: require("@/assets/skills/vuejs.jpeg"), alt: "vuejs.jpeg" },
+        { src: require("@/assets/skills/angular.png"), alt: "angular.png"},
+        { src: require("@/assets/skills/bootstrap.png"), alt: "bootstrap.png" },
+        { src: require("@/assets/skills/semantic.png"), alt: "semantic.png" },
+        { src: require("@/assets/skills/DigitalOcean.png"), alt: "semantic.png" },
+        { src: require("@/assets/skills/jira.png"), alt: "semantic.png" },
       ]
     };
   },
   methods: {
     skillModal(idx) {
       $(`#skillModal${idx}`).modal("show");
+    },
+    getImageUrl(idx) {
+      console.log(this.imgPath[idx].src)
+      console.log(typeof this.imgPath[idx].src)
+      // https://picsum.photos/${width}/${height}/?image=${imageId}
+      return this.imgPath[idx].src
+
     }
   }
 };
