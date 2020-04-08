@@ -17,7 +17,13 @@
     <b-row>
       <b-col cols="7"></b-col>
       <b-col cols="5" class="text-right">
-        <i class="text-warning">{{nowMonth}}</i>
+        <i class="text-warning">{{nowMonth}}</i> &nbsp;|&nbsp; <b>Summary total of month: <u>{{summary | currency}}</u></b>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col cols="7"></b-col>
+      <b-col cols="5" class="text-right">
+          
       </b-col>
     </b-row>
     <b-row>
@@ -27,7 +33,7 @@
         </p>
       </b-col>
       <b-col cols="5" class="text-right">
-        <b>Summary of month: {{summary | currency}}</b>
+        <b>Summary active of month: {{summaryActive | currency}}</b>
       </b-col>
     </b-row>
 
@@ -70,7 +76,14 @@
       </b-col>
     </b-row>
     <hr />
-    <h3>Payed</h3>
+    <b-row>
+      <b-col cols="6">
+        <h3>Payed</h3>
+      </b-col>
+      <b-col cols="6">
+        <b class="float-right">Summary payed: {{summaryHis | currency}}</b>
+      </b-col>
+    </b-row>
     <b-row>
       <b-col lg="3" md="6" sm="12" v-for="(his,index) in histories" v-bind:key="index" class="mb-4">
         <b-card :header="false" :shadow="'lg'">
@@ -112,6 +125,8 @@ export default {
   data() {
     return {
       summary: 0,
+      summaryActive: 0,
+      summaryHis: 0,
       items: [],
       histories: [],
       nowMonth: moment().format("MMM YYYY")
@@ -130,16 +145,20 @@ export default {
     findHistory() {
       axios.doGet("/api/bill-his/").then(res => {
         this.histories = res.data;
-        this.summaryAmount()
+        this.summaryAmount();
       });
     },
     summaryAmount() {
       this.summary = 0;
+      this.summaryHis = 0;
+      this.summaryActive =0;
       this.items.forEach(e => {
         this.summary += e.amount;
+        this.summaryActive += e.amount;
       });
       this.histories.forEach(e => {
         this.summary += e.amount;
+        this.summaryHis += e.amount;
       });
     },
     deleteBill(id, title) {

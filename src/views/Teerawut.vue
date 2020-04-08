@@ -1,10 +1,10 @@
 <template>
   <div id="page-top">
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg bg-dark text-uppercase fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" v-scroll-to="'#page-top'"  href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" v-scroll-to="'#page-top'"  href="#page-top">Teerawut Profile</a>
         <button
-          class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+          class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-warning text-white rounded"
           type="button"
           data-toggle="collapse"
           data-target="#navbarResponsive"
@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a  v-scroll-to="{ el: '#portfolio', offset: -100 }"
+              <a  v-scroll-to="{ el: '#skill', offset: -100 }"
                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                href="#portfolio"
-              >Portfolio</a>
+                href="#skill"
+              >Skills</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a v-scroll-to="{ el: '#about', offset: -100 }" 
@@ -38,118 +38,54 @@
       </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead bg-primary text-white text-center">
+    <header class="masthead bg-warning text-white text-center" >
       <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/avataaars.svg" alt />
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">Teerawut Kulrittichai</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon">
-            <i class="fas fa-star"></i>
+            <i class="fa fa-laptop"></i>
           </div>
           <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
         <p 
           class="masthead-subheading font-weight-light mb-0"
-        >Graphic Artist - Web Designer - Illustrator</p>
+        >Web Delveloper</p>
       </div>
     </header >
     <!-- Portfolio Section-->
     <!-- <div style="padding-bottom:100px" id="portfolio"></div> -->
-    <section class="page-section portfolio" id="portfolio">
+    <section class="page-section portfolio" id="skill">
       <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Skills</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon">
-            <i class="fas fa-star"></i>
+            <i class="fa fa-star-o"></i>
           </div>
           <div class="divider-custom-line"></div>
         </div>
         <!-- Portfolio Grid Items-->
         <div class="row">
           <!-- Portfolio Item 1-->
-          <div class="col-md-6 col-lg-4 mb-5">
+          <div class="col-md-6 col-lg-4 mb-5" v-for="(img, index) in imgPath" :key="index">
             <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
               <div
                 class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
               >
                 <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
+                  <i class="fa fa-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cabin.png" alt />
-            </div>
-          </div>
-          <!-- Portfolio Item 2-->
-          <div class="col-md-6 col-lg-4 mb-5">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cake.png" alt />
-            </div>
-          </div>
-          <!-- Portfolio Item 3-->
-          <div class="col-md-6 col-lg-4 mb-5">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/circus.png" alt />
-            </div>
-          </div>
-          <!-- Portfolio Item 4-->
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/game.png" alt />
-            </div>
-          </div>
-          <!-- Portfolio Item 5-->
-          <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/safe.png" alt />
-            </div>
-          </div>
-          <!-- Portfolio Item 6-->
-          <div class="col-md-6 col-lg-4">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/submarine.png" alt />
+              <!-- <b-img class="img-fluid" v-bind:src="img.src" :alt="img.alt" ></b-img> -->
+              <img class="img-fluid" :src="img.src" :alt="img.alt">
             </div>
           </div>
         </div>
@@ -157,7 +93,7 @@
     </section>
     <!-- About Section-->
     <!-- <div style="margin-bottom:100px" id="about"></div> -->
-    <section class="page-section bg-primary text-white" id="about">
+    <section class="page-section bg-warning text-white" id="about">
       <div class="container">
         <!-- About Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
@@ -165,7 +101,7 @@
         <div class="divider-custom divider-light">
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon">
-            <i class="fas fa-star"></i>
+            <i class="fa fa-star-o"></i>
           </div>
           <div class="divider-custom-line"></div>
         </div>
@@ -203,7 +139,7 @@
         <div class="divider-custom">
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon">
-            <i class="fas fa-star"></i>
+            <i class="fa fa-star-o"></i>
           </div>
           <div class="divider-custom-line"></div>
         </div>
@@ -294,16 +230,16 @@
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
             <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-facebook-f"></i>
+              <i class="fa fa-facebook"></i>
             </a>
             <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-twitter"></i>
+              <i class="fa fa-twitter"></i>
             </a>
             <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-linkedin-in"></i>
+              <i class="fa fa-linkedin"></i>
             </a>
             <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fab fa-fw fa-dribbble"></i>
+              <i class="fa fa-instagram"></i>
             </a>
           </div>
           <!-- Footer About Text-->
@@ -356,7 +292,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -375,7 +311,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </template>
     <!-- Portfolio Modal 2-->
     <div
       class="portfolio-modal modal fade"
@@ -402,7 +338,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -421,7 +357,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </template>
     <!-- Portfolio Modal 3-->
     <div
       class="portfolio-modal modal fade"
@@ -448,7 +384,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -467,7 +403,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </template>
     <!-- Portfolio Modal 4-->
     <div
       class="portfolio-modal modal fade"
@@ -494,7 +430,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -540,7 +476,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -586,7 +522,7 @@
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
+                      <i class="fa fa-star-o"></i>
                     </div>
                     <div class="divider-custom-line"></div>
                   </div>
@@ -610,7 +546,20 @@
 </template>
 <script>
 export default {
-    
+    data(){
+      return {
+        imgPath:[
+          { src:"../assets/skills/bootstrap.png", alt:"bootstrap.png"},
+          { src:"../assets/skills/vuejs.jpeg", alt:"vuejs.jpeg"},
+          { src:"../assets/skills/adonis.svg", alt:"adonis.svg"},
+          { src:"../assets/skills/spring.png", alt:"spring.png"},
+          { src:"../assets/skills/sql.jpg", alt:"sql.jpg"},
+          { src:"../assets/skills/yii2.jpg", alt:"yii2.jpg"},
+          { src:"../assets/skills/angular.png", alt:"angular.png"},
+          { src:"../assets/skills/struts.jpg", alt:"struts.jpg"},
+        ]
+      }
+    }
 }
 </script>
 <style scoped>
