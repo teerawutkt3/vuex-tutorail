@@ -2,7 +2,11 @@
   <div id="page-top">
     <nav class="navbar navbar-expand-lg bg-dark text-uppercase fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" v-scroll-to="'#page-top'"  href="#page-top">Teerawut Profile</a>
+        <a
+          class="navbar-brand js-scroll-trigger"
+          v-scroll-to="'#page-top'"
+          href="#page-top"
+        >Teerawut Profile</a>
         <button
           class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-warning text-white rounded"
           type="button"
@@ -18,17 +22,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a  v-scroll-to="{ el: '#skill', offset: -100 }"
+              <a
+                v-scroll-to="{ el: '#skill', offset: -100 }"
                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                 href="#skill"
               >Skills</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a v-scroll-to="{ el: '#about', offset: -100 }" 
-              class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+              <a
+                v-scroll-to="{ el: '#about', offset: -100 }"
+                class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                href="#about"
+              >About</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a v-scroll-to="{ el: '#contact', offset: -100 }"
+              <a
+                v-scroll-to="{ el: '#contact', offset: -100 }"
                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                 href="#contact"
               >Contact</a>
@@ -38,10 +47,19 @@
       </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead bg-warning text-white text-center" >
+    <header class="masthead bg-warning text-white text-center">
       <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
-        <img class="masthead-avatar mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/avataaars.svg" alt />
+        <img
+          class="masthead-avatar mb-5 rounded-circle"
+          src="@/assets/my.jpg"
+          alt
+        />
+        <!-- <img
+          class="masthead-avatar mb-5"
+          src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/avataaars.svg"
+          alt
+        /> -->
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0">Teerawut Kulrittichai</h1>
         <!-- Icon Divider-->
@@ -53,11 +71,9 @@
           <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p 
-          class="masthead-subheading font-weight-light mb-0"
-        >Web Delveloper</p>
+        <p class="masthead-subheading font-weight-light mb-0">Web Delveloper</p>
       </div>
-    </header >
+    </header>
     <!-- Portfolio Section-->
     <!-- <div style="padding-bottom:100px" id="portfolio"></div> -->
     <section class="page-section portfolio" id="skill">
@@ -72,20 +88,60 @@
           </div>
           <div class="divider-custom-line"></div>
         </div>
-        <!-- Portfolio Grid Items-->
+        <!-- Skill Grid Items-->
         <div class="row">
-          <!-- Portfolio Item 1-->
-          <div class="col-md-6 col-lg-4 mb-5" v-for="(img, index) in imgPath" :key="index">
-            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-              <div
-                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-              >
-                <div class="portfolio-item-caption-content text-center text-white">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
+          <!-- java -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'javaModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
               </div>
-              <!-- <b-img class="img-fluid" v-bind:src="img.src" :alt="img.alt" ></b-img> -->
-              <img class="img-fluid" :src="img.src" :alt="img.alt">
+              <img class="img-fluid" src="../assets/skills/java.jpeg" width="100%"/>
+            </div>
+          </div>
+          <!-- sql -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'sqlModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
+              </div>
+              <img class="img-fluid" src="../assets/skills/sql.jpg" width="100%"/>
+            </div>
+          </div>
+          <!-- php -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'phpModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
+              </div>
+              <img class="img-fluid" src="../assets/skills/php.png" width="100%"/>
+            </div>
+          </div>
+          <!-- nodejs -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'nodejsModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
+              </div>
+              <img class="img-fluid" src="../assets/skills/nodejs.png" width="100%"/>
+            </div>
+          </div>
+          <!-- js -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'jsModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
+              </div>
+              <img class="img-fluid" src="../assets/skills/js.png" width="100%"/>
+            </div>
+          </div>
+          <!-- css -->
+          <div class="col-md-4 col-lg-2 mb-5">
+            <div class="portfolio-item mx-auto" v-b-modal="'cssModal'">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100" >
+                <div class="portfolio-item-caption-content text-center text-white"> <i class="fa fa-plus fa-3x"></i> </div>
+              </div>
+              <img class="img-fluid" src="../assets/skills/css.png" width="100%"/>
             </div>
           </div>
         </div>
@@ -131,7 +187,7 @@
     </section>
     <!-- Contact Section-->
     <!-- <div style="margin-bottom:100px" id="contact"></div> -->
-    <section class="page-section" id="contact" >
+    <section class="page-section" id="contact">
       <div class="container">
         <!-- Contact Section Heading-->
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
@@ -247,7 +303,9 @@
             <h4 class="text-uppercase mb-4">About Freelancer</h4>
             <p class="lead mb-0">
               Freelance is a free to use, MIT licensed Bootstrap theme created by
-              <a href="http://startbootstrap.com">Start Bootstrap</a>.
+              <a
+                href="http://startbootstrap.com"
+              >Start Bootstrap</a>.
             </p>
           </div>
         </div>
@@ -265,146 +323,6 @@
         <i class="fa fa-chevron-up"></i>
       </a>
     </div>
-    <!-- Portfolio Modals-->
-    <!-- Portfolio Modal 1-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal1"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="portfolioModal1Label"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">
-              <i class="fas fa-times"></i>
-            </span>
-          </button>
-          <div class="modal-body text-center">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <!-- Portfolio Modal - Title-->
-                  <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
-                  <!-- Icon Divider-->
-                  <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                  </div>
-                  <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cabin.png" alt />
-                  <!-- Portfolio Modal - Text-->
-                  <p
-                    class="mb-5"
-                  >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                  <button class="btn btn-primary" href="#" data-dismiss="modal">
-                    <i class="fas fa-times fa-fw"></i>Close Window
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <!-- Portfolio Modal 2-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal2"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="portfolioModal2Label"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">
-              <i class="fas fa-times"></i>
-            </span>
-          </button>
-          <div class="modal-body text-center">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <!-- Portfolio Modal - Title-->
-                  <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
-                  <!-- Icon Divider-->
-                  <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                  </div>
-                  <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cake.png" alt />
-                  <!-- Portfolio Modal - Text-->
-                  <p
-                    class="mb-5"
-                  >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                  <button class="btn btn-primary" href="#" data-dismiss="modal">
-                    <i class="fas fa-times fa-fw"></i>Close Window
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <!-- Portfolio Modal 3-->
-    <div
-      class="portfolio-modal modal fade"
-      id="portfolioModal3"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="portfolioModal3Label"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">
-              <i class="fas fa-times"></i>
-            </span>
-          </button>
-          <div class="modal-body text-center">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <!-- Portfolio Modal - Title-->
-                  <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
-                  <!-- Icon Divider-->
-                  <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                  </div>
-                  <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/circus.png" alt />
-                  <!-- Portfolio Modal - Text-->
-                  <p
-                    class="mb-5"
-                  >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                  <button class="btn btn-primary" href="#" data-dismiss="modal">
-                    <i class="fas fa-times fa-fw"></i>Close Window
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <!-- Portfolio Modal 4-->
     <div
       class="portfolio-modal modal fade"
       id="portfolioModal4"
@@ -435,7 +353,11 @@
                     <div class="divider-custom-line"></div>
                   </div>
                   <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/game.png" alt />
+                  <img
+                    class="img-fluid rounded mb-5"
+                    src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/game.png"
+                    alt
+                  />
                   <!-- Portfolio Modal - Text-->
                   <p
                     class="mb-5"
@@ -481,7 +403,11 @@
                     <div class="divider-custom-line"></div>
                   </div>
                   <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/safe.png" alt />
+                  <img
+                    class="img-fluid rounded mb-5"
+                    src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/safe.png"
+                    alt
+                  />
                   <!-- Portfolio Modal - Text-->
                   <p
                     class="mb-5"
@@ -527,7 +453,11 @@
                     <div class="divider-custom-line"></div>
                   </div>
                   <!-- Portfolio Modal - Image-->
-                  <img class="img-fluid rounded mb-5" src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/submarine.png" alt />
+                  <img
+                    class="img-fluid rounded mb-5"
+                    src="@/assets/startbootstrap-freelancer-gh-pages/assets/img/portfolio/submarine.png"
+                    alt
+                  />
                   <!-- Portfolio Modal - Text-->
                   <p
                     class="mb-5"
@@ -542,28 +472,128 @@
         </div>
       </div>
     </div>
+    <!-- modal java -->
+    <b-modal id="javaModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Java
+      </template>
+      <div class="d-block">
+        <b-row class="justify-content-center">
+          <b-col cols="4"><br><img src="../assets/skills/spring.png" width="100%"></b-col>
+          <b-col cols="4"><img src="../assets/skills/struts.jpg" width="100%"></b-col>
+          <b-col cols="4"><img src="../assets/skills/springdata.png" width="100%"></b-col>
+          <b-col cols="4"><img src="../assets/skills/hibernate.png" width="100%"></b-col>
+        </b-row>
+      </div>
+      <div class="text-center mt-5">
+        <b-button @click="$bvModal.hide('javaModal')">Close</b-button>
+      </div>
+    </b-modal>
+    <!-- modal sql -->
+    <b-modal id="sqlModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Sql
+      </template>
+      <div class="d-block text-center">
+        <h3>Hello From This Modal!</h3>
+      </div>
+      <div class="text-center">
+        <b-button class="mt-3" @click="$bvModal.hide('sqlModal')">Close Me</b-button>
+      </div>
+    </b-modal>
+    <!-- modal phpModal -->
+    <b-modal id="phpModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Php
+      </template>
+      <div class="d-block text-center">
+        <div class="d-block text-center">
+            <b-row class="justify-content-center">
+              <b-col cols="4"><img src="../assets/skills/yii2.jpg" width="100%"></b-col>
+            </b-row>
+          </div>
+      </div>
+      <div class="text-center mt-5">
+        <b-button class="" @click="$bvModal.hide('phpModal')">Close</b-button>
+      </div>
+    </b-modal>
+    <!-- modal nodejs -->
+    <b-modal id="nodejsModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Node Js
+      </template>
+        <div class="d-block text-center">
+          <b-row class="justify-content-center">
+            <b-col cols="4"><img src="../assets/skills/adonis.svg" width="100%"></b-col>
+          </b-row>
+        </div>
+      <div class="text-center mt-5">
+        <b-button @click="$bvModal.hide('nodejsModal')">Close</b-button>
+      </div>
+    </b-modal>
+    <!-- modal js -->
+    <b-modal id="jsModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Js
+      </template>
+      <div class="d-block text-center">
+          <div class="d-block text-center">
+            <b-row class="justify-content-center">
+              <b-col cols="4"><img src="../assets/skills/angular.png" width="100%"></b-col>
+              <b-col cols="4"><br><img src="../assets/skills/vuejs.jpeg" width="100%"></b-col>
+            </b-row>
+          </div>
+      </div>
+      <div class="text-center">
+        <b-button class="mt-5" @click="$bvModal.hide('jsModal')">Close</b-button>
+      </div>
+    </b-modal>
+    <!-- modal css -->
+    <b-modal id="cssModal" centered hide-footer>
+      <template v-slot:modal-title>
+        Css
+      </template>
+      <div class="d-block text-center">
+        <div class="d-block text-center">
+          <b-row class="justify-content-center">
+            <b-col cols="4"><img src="../assets/skills/bootstrap.png" width="100%"></b-col>
+            <b-col cols="4"><img src="../assets/skills/semantic.png" width="100%"></b-col>
+          </b-row>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <b-button  @click="$bvModal.hide('cssModal')">Close</b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 <script>
+const $ = require("jquery");
 export default {
-    data(){
-      return {
-        imgPath:[
-          { src:"../assets/skills/bootstrap.png", alt:"bootstrap.png"},
-          { src:"../assets/skills/vuejs.jpeg", alt:"vuejs.jpeg"},
-          { src:"../assets/skills/adonis.svg", alt:"adonis.svg"},
-          { src:"../assets/skills/spring.png", alt:"spring.png"},
-          { src:"../assets/skills/sql.jpg", alt:"sql.jpg"},
-          { src:"../assets/skills/yii2.jpg", alt:"yii2.jpg"},
-          { src:"../assets/skills/angular.png", alt:"angular.png"},
-          { src:"../assets/skills/struts.jpg", alt:"struts.jpg"},
-        ]
-      }
+  data() {
+    return {
+      imgPath: [
+        { src: "../assets/skills/bootstrap.png", alt: "bootstrap.png" },
+        { src: "../assets/skills/vuejs.jpeg", alt: "vuejs.jpeg" },
+        { src: "../assets/skills/adonis.svg", alt: "adonis.svg" },
+        { src: "../assets/skills/spring.png", alt: "spring.png" },
+        { src: "../assets/skills/sql.jpg", alt: "sql.jpg" },
+        { src: "../assets/skills/yii2.jpg", alt: "yii2.jpg" },
+        { src: "../assets/skills/angular.png", alt: "angular.png" },
+        { src: "../assets/skills/struts.jpg", alt: "struts.jpg" },
+        { src: "../assets/skills/semantic.png", alt: "semantic.png" },
+      ]
+    };
+  },
+  methods: {
+    skillModal(idx) {
+      $(`#skillModal${idx}`).modal("show");
     }
-}
+  }
+};
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic");
 @import url("../assets/startbootstrap-freelancer-gh-pages/css/styles.css");
 </style>
