@@ -21,9 +21,10 @@
               <label>Password</label>
               <input type="password" v-model="password" class="form-control" placeholder="Enter Password" />
             </div>
-            <button type="submit" class="btn btn-black">Login</button>&nbsp;
-            <button type="button" class="btn btn-secondary" @click="register">Register</button>&nbsp;
-            <a @click="goCovid19" class="btn btn-warning">Covid-19</a>
+            <button type="submit" class="btn btn-black btn-sm">Login</button>&nbsp;
+            <button type="button" class="btn btn-secondary btn-sm" @click="register">Register</button>&nbsp;
+            <a @click="goCovid19" class="btn btn-warning btn-sm">Covid-19</a>&nbsp;
+            <a @click="goProfileTeerawut" class="btn btn-warning btn-sm"><icon :icon="'fa-address-card'" />&nbsp;Profile</a>
           </form>
         </div>
       </div>
@@ -116,6 +117,9 @@ export default {
     },
     goCovid19(){
       this.$router.push({path:'/covid19'})
+    },
+    goProfileTeerawut(){
+      this.$router.push({path:'/teerawut'})
     }
   },
   created() {

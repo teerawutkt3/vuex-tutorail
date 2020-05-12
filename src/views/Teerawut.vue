@@ -231,16 +231,16 @@
           <!-- Footer Social Icons-->
           <div class="col-lg-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.facebook.com/100002071176546">
               <i class="fa fa-facebook"></i>
             </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
-              <i class="fa fa-linkedin"></i>
-            </a>
-            <a class="btn btn-outline-light btn-social mx-1" href="#">
+<!--            <a class="btn btn-outline-light btn-social mx-1" href="#">-->
+<!--              <i class="fa fa-twitter"></i>-->
+<!--            </a>-->
+<!--            <a class="btn btn-outline-light btn-social mx-1" href="#">-->
+<!--              <i class="fa fa-linkedin"></i>-->
+<!--            </a>-->
+            <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.instagram.com/top_teerawutkt/">
               <i class="fa fa-instagram"></i>
             </a>
           </div>
