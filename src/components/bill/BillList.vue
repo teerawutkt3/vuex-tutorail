@@ -10,7 +10,7 @@
       </b-col>
       <b-col cols="5" class="text-right">
         <b-btn :click="goCreate" color="outline-warning">
-          <icon icon="fa-sliders" />setting
+          <icon icon="fa-sliders" />&nbsp;setting
         </b-btn>
       </b-col>
     </b-row>
@@ -188,8 +188,7 @@ export default {
         successMode: true
       }).then(willDelete => {
         if (willDelete) {
-          let bill = this.items[idx];
-          console.log("item => ", bill);
+          let bill = this.items[idx];        
           axios.doPost("/api/bill-his/pay", bill).then(() => {
             this.findAll();
           });

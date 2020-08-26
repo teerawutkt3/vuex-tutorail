@@ -443,7 +443,7 @@ export default {
         { src: require("@/assets/skills/jsp.png"), alt: "hibernate.png"},
         { src: require("@/assets/skills/struts.jpg"), alt: "struts.jpg" },
         { src: require("@/assets/skills/yii2.jpg"), alt: "yii2.jpg" },
-        { src: require("@/assets/skills/adonis.svg"), alt: "adonis.svg" },
+        // { src: require("@/assets/skills/adonis.svg"), alt: "adonis.svg" },
         { src: require("@/assets/skills/oracle.png"), alt: "sql.jpg" },
         { src: require("@/assets/skills/mysql.png"), alt: "sql.jpg" },
         { src: require("@/assets/skills/vuejs.jpeg"), alt: "vuejs.jpeg" },
@@ -460,8 +460,6 @@ export default {
       $(`#skillModal${idx}`).modal("show");
     },
     getImageUrl(idx) {
-      console.log(this.imgPath[idx].src)
-      console.log(typeof this.imgPath[idx].src)
       // https://picsum.photos/${width}/${height}/?image=${imageId}
       return this.imgPath[idx].src
 

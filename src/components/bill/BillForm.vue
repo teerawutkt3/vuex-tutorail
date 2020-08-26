@@ -41,21 +41,14 @@
             </b-row>
             <b-row>
               <b-col md="6" sm="6" lg="6">
-                <b-form-group>
-                  <label>Pay Date:</label>
-                  <date-picker
-                    v-model="time1"
-                    valuetype="format"
-                    :format="momentFormat"
-                    placeholder="dd/MM/yyyy"
-                    style="width: 100%"
-                  />
-                </b-form-group>
-                <br />
-                <b-create v-if="form.id==0" :click="onSave" class="shadow-lg" />&nbsp;
-                <b-edit v-if="form.id!=0" :click="onSave" class="shadow-lg" />&nbsp;
-                <b-reset :click="onReset" class="shadow-lg" />&nbsp;
-                <b-back :click="goBack" />
+                <b-form-select v-model="form.moneyType" :options="moneyTypeOptions"></b-form-select>
+
+                <div class="mt-3">
+                  <b-create v-if="form.id==0" :click="onSave" class="shadow-lg" />&nbsp;
+                  <b-edit v-if="form.id!=0" :click="onSave" class="shadow-lg" />&nbsp;
+                  <b-reset :click="onReset" class="shadow-lg" />&nbsp;
+                  <b-back :click="goBack" />
+                </div>
               </b-col>
               <b-col md="6" sm="6" lg="6">
                 <b-form-group>
@@ -78,31 +71,36 @@
             <b>Summary Bill</b>
           </template>
           <template v-slot:body>
-            <b-form-group>
-              <b>
-                <icon :icon="'fa-calendar'" />Now month :
-              </b>
-              {{nowMonth}}
-            </b-form-group>
-            <b-form-group>
-              <b class="text-primary">Bill : {{items.length}}</b>
-            </b-form-group>
-            <b-form-group>
-              <b class="text-success">Bill Active : {{checkedIsShow.length}}</b>
-            </b-form-group>
-            <b-form-group>
-              <b class="text-warning">Bill In Active : {{items.length-checkedIsShow.length}}</b>
-            </b-form-group>
-            <b-form-group>
-              <b>Summary : {{summary | currency}}</b>
-            </b-form-group>
-            <b-form-group>
-              <b>
-                Summary
-                <span class="text-primary">bill active</span>
-                : {{summaryBillActive | currency}}
-              </b>
-            </b-form-group>
+            <b-row>
+              <b-col>
+                <b-form-group>
+                  <b>
+                    <icon :icon="'fa-calendar'" />&nbsp;Now month :
+                  </b>
+                  {{nowMonth}}
+                </b-form-group>
+                <b-form-group>
+                  <b class="text-primary">Bill : {{items.length}}</b>
+                </b-form-group>
+                <b-form-group>
+                  <b class="text-success">Bill Active : {{checkedIsShow.length}}</b>
+                </b-form-group>
+                <b-form-group>
+                  <b class="text-warning">Bill In Active : {{items.length-checkedIsShow.length}}</b>
+                </b-form-group>
+              </b-col>
+              <b-col>
+                <p><b class="text-danger">Pay: </b> {{ sumPay | currency }}</p>
+                <p><b class="text-success">Saving: </b> {{ sumSaving | currency }}</p>
+                <p><b class="text-info">Invest: </b> {{ sumInvest | currency }}</p>
+                 <b>Summary : {{summary | currency}}</b><br>
+                 <b>
+                    Summary
+                    <span class="text-primary">bill active</span>
+                    : {{summaryBillActive | currency}}
+                  </b>
+              </b-col>
+            </b-row>
           </template>
         </b-card>
       </b-col>
@@ -114,8 +112,9 @@
       <template v-slot:body>
         <table id="table-bill" class="table table-striped table-sm table-hover nowrap" width="100%">
           <thead>
-            <tr>
-              <th class="text-right">
+            <tr>              
+              <th></th>
+              <th class="">
                 <div class="custom-control custom-checkbox my-1 mr-sm-2">
                   <input
                     type="checkbox"
@@ -128,17 +127,23 @@
                 </div>
               </th>
               <th>#</th>
+              <th class="text-center">Type</th>
               <th>title</th>
               <th class="text-right">amount</th>
               <th>description</th>
-              <th class="text-center">created date</th>
               <th class="text-center">updated date</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item,index) in items" v-bind:key="item.id">
-              <td class="text-right">
+              <td>
+                <b-icon-edit v-if="!checkHis(item.title)" :click="()=>{onEdit(item.id)}" />&nbsp;
+                <b-icon-delete
+                  v-if="!checkHis(item.title)"
+                  :click="()=>{onDelete(item.id, item.title)}"
+                />
+              </td>
+              <td>
                 <div class="custom-control custom-checkbox my-1 mr-sm-2">
                   <input
                     type="checkbox"
@@ -151,17 +156,17 @@
                   />
                   <label class="custom-control-label" :for="'isShow'+index">&nbsp;</label>
                 </div>
-              </td>
+              </td>              
               <td>{{index + 1}}</td>
+              <td class="text-center">
+                <span v-if="item.moneyType == 'PAY'" class="text-danger">{{item.moneyType}}</span>
+                <span v-if="item.moneyType == 'SAVING'" class="text-success">{{item.moneyType}}</span>
+                <span v-if="item.moneyType == 'INVEST'" class="text-info">{{item.moneyType}}</span>
+              </td>
               <td>{{item.title}}</td>
               <td class="text-right">{{item.amount | currency}}</td>
               <td>{{item.description}}</td>
-              <td class="text-center">{{item.createdDateStr}}</td>
               <td class="text-center">{{item.updatedDateStr}}</td>
-              <td class="text-right">
-                <b-icon-edit v-if="!checkHis(item.title)" :click="()=>{onEdit(item.id)}" />&nbsp;
-                <b-icon-delete v-if="!checkHis(item.title)" :click="()=>{onDelete(item.id, item.title)}" />
-              </td>
             </tr>
           </tbody>
         </table>
@@ -181,7 +186,6 @@
 import AxiosService from "../../common/service/axios-service";
 import router from "../../router";
 import swal from "sweetalert";
-import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import moment from "moment";
 import BEdit from "../base/button/b-edit";
@@ -190,42 +194,48 @@ const $ = require("jquery");
 const axios = new AxiosService();
 export default {
   name: "BillForm",
-  components: { BEdit, DatePicker },
+  components: { BEdit },
   data() {
     return {
       nowMonth: moment().format("MMM YYYY"),
-      time1: null,
-      time2: null,
-      time3: null,
       form: {
         id: 0,
         title: "",
+        moneyType: "SAVING",
         description: "",
-        amount: 0.0
+        amount: 0.0,
       },
+      moneyTypeOptions: [
+        { value: "PAY", text: "PAY" },
+        { value: "SAVING", text: "SAVING" },
+        { value: "INVEST", text: "INVEST" },
+      ],
       items: [],
       histories: [],
       show: true,
       momentFormat: {
-        stringify: date => {
+        stringify: (date) => {
           return date ? moment(date).format("D MMM YYYY") : "";
         },
-        parse: value => {
+        parse: (value) => {
           return value ? moment(value, "D MMM YYYY").toDate() : null;
-        }
+        },
       },
       checkedIsShow: [],
       summary: 0,
-      summaryBillActive: 0
+      summaryBillActive: 0,
+      sumPay: 0,
+      sumSaving: 0,
+      sumInvest: 0,
     };
   },
   methods: {
     checkHis(title) {
-        let idx = this.histories.findIndex(e=> e.title==title)
-       return idx!=-1 
+      let idx = this.histories.findIndex((e) => e.title == title);
+      return idx != -1;
     },
     findHistory() {
-      axios.doGet("/api/bill-his/").then(res => {
+      axios.doGet("/api/bill-his/").then((res) => {
         this.histories = res.data;
       });
     },
@@ -245,12 +255,12 @@ export default {
         //     let idx = this.items.findIndex(e=>e.title==element.title)
         //     objCanCheck = this.items.splice(idx,1)
         //     console.log('obj= >', objCanCheck);
-            
+
         //     canCheck.push(objCanCheck)
         // });
-        
+
         // canCheck.forEach(e => {
-        this.items.forEach(e => {
+        this.items.forEach((e) => {
           this.checkedIsShow.push(e.id);
         });
       } else {
@@ -265,7 +275,7 @@ export default {
         id: 0,
         title: "",
         description: "",
-        amount: 0.0
+        amount: 0.0,
       };
     },
     onSave() {
@@ -276,26 +286,38 @@ export default {
       });
     },
     async findAll() {
-      await axios.doGet("/api/bill/").then(res => {
+      await axios.doGet("/api/bill/").then((res) => {
         this.items = res.data;
         this.summary = 0;
         this.summaryBillActive = 0;
-        this.items.forEach(e => {
+        this.sumPay = 0;
+        this.sumSaving = 0;
+        this.sumInvest = 0;
+        this.items.forEach((e) => {
           this.summary += e.amount;
           if (e.isShow == "Y") {
             this.summaryBillActive += e.amount;
           }
+          if (e.moneyType == "PAY"){
+            this.sumPay += e.amount
+          }
+          if (e.moneyType == "SAVING"){
+            this.sumSaving += e.amount
+          }
+          if (e.moneyType == "INVEST"){
+            this.sumInvest += e.amount
+          }
         });
         this.destroyDataTable();
         this.findIsShowActive();
-        this.findHistory()
+        this.findHistory();
       });
       await this.callDataTable();
     },
     findIsShowActive() {
-      axios.doGet("/api/bill/bill-active").then(res => {
+      axios.doGet("/api/bill/bill-active").then((res) => {
         this.checkedIsShow = [];
-        res.data.forEach(e => {
+        res.data.forEach((e) => {
           this.checkedIsShow.push(e.id);
         });
         this.checkIsCheckAll();
@@ -307,8 +329,8 @@ export default {
         text: `Title: ${title}`,
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           axios.doDelete(`/api/bill/${id}`).then(() => {
             this.findAll();
@@ -316,10 +338,9 @@ export default {
         }
       });
     },
-    onEdit(id) {
-      console.log("id: ", id);
+    onEdit(id) {      
       this.form.id = id;
-      axios.doGet(`/api/bill/${id}`).then(res => {
+      axios.doGet(`/api/bill/${id}`).then((res) => {
         this.form = res.data;
         window.scrollTo(0, 0);
       });
@@ -328,9 +349,7 @@ export default {
       $("#table-bill").dataTable({ scrollX: true, paging: false });
     },
     destroyDataTable() {
-      $("#table-bill")
-        .dataTable()
-        .fnDestroy();
+      $("#table-bill").dataTable().fnDestroy();
     },
     checkIsCheckAll() {
       if (this.checkedIsShow.length != this.items.length) {
@@ -338,11 +357,11 @@ export default {
       } else {
         $("#checkAll").prop("checked", true);
       }
-    }
+    },
   },
   created() {
     this.findAll();
-  }
+  },
 };
 </script>
 
