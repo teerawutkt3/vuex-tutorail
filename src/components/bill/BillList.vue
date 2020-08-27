@@ -17,7 +17,7 @@
     <b-row>
       <b-col cols="7"></b-col>
       <b-col cols="5" class="text-right">
-        <i class="text-warning">{{nowMonth}}</i> &nbsp;|&nbsp; <b>Summary total of month: <u>{{summary | currency}}</u></b>
+        <i class="text-warning">{{nowMonth}}</i> &nbsp;|&nbsp; <b>Summary total bill of month: <u>{{summary | currency}}</u></b>
       </b-col>
     </b-row>
     <b-row>
@@ -29,11 +29,11 @@
     <b-row>
       <b-col cols="7">
         <p>
-          <icon icon="fa-credit-card-alt" />Alert payments
+          <icon icon="fa-credit-card-alt" />&nbsp;Alert payments
         </p>
       </b-col>
       <b-col cols="5" class="text-right">
-        <b>Summary active of month: {{summaryActive | currency}}</b>
+        <b>Summary bill active of month: {{summaryActive | currency}}</b>
       </b-col>
     </b-row>
 
@@ -46,7 +46,7 @@
                 <h5>{{item.title}}</h5>
               </b-col>
               <b-col cols="2" class="text-right">
-                <a @click="deleteBill(item.id, item.title)" class="text-danger">
+                <a @click="deleteBill(item.id, item.title)" class="text-danger" style="cursor:pointer">
                   <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                 </a>
               </b-col>
@@ -129,9 +129,15 @@ export default {
       summaryHis: 0,
       items: [],
       histories: [],
-      nowMonth: moment().format("MMM YYYY")
+      nowMonth: moment().format("MMMM YYYY")
     };
   },
+  filters:{
+    currency(value){
+        let val = (value/1).toFixed(2).replace('.', '.')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+  }, 
   methods: {
     goCreate() {
       router.push({ path: "/bill-form" });
@@ -177,7 +183,7 @@ export default {
       });
     },
     onShowDetail(description) {
-      swal(`Description: ${description}`);
+      swal(`${description}`);
     },
     onPay(idx, title) {
       swal({

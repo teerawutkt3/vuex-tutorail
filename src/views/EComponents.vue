@@ -53,7 +53,6 @@
         name: 'e-components',
         methods: {
             onclickBack: () => {
-                console.log("onclickBack")
             }
         }
     }

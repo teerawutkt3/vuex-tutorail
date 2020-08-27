@@ -129,7 +129,6 @@
                 });
             },
             getState() {
-                console.log("this state => ", this.state)
             },
             openModalPassword() {
                 this.$bvModal.show('modal-change-password')

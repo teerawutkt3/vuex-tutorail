@@ -55,7 +55,6 @@
             },
             register(){
                 axios.doPost('/api/register', this.form).then(()=>{
-                    console.log('register')
                 })
             }
         }

@@ -2,11 +2,11 @@ import HttpRequest from '../../httpRequest'
 import swal from 'sweetalert'
 import router from '../../router/index'
 
-const message401 = {
-    title: '401',
-    description: 'Unauthorized',
-    icon: 'error'
-}
+// const message401 = {
+//     title: '401',
+//     description: 'Unauthorized',
+//     icon: 'error'
+// }
 const message405 = {
     title: '405',
     description: 'Method not allowed',
@@ -24,13 +24,7 @@ class AxiosService extends HttpRequest {
         FAIL: 'FAIL'
     }
 
-    doGet(path) {
-        if (this.getIsDebug()) {
-            console.log("=============================")
-            console.log("Path: ", this.getBaseUrl() + path)
-            console.log("Method Type: GET ")
-            console.log("=============================")
-        }
+    doGet(path) {        
         return new Promise((resolve, reject) => {
             this.get(path, {}).then(res => {
                 if (res.data.status == 'SUCCESS') {
@@ -44,14 +38,7 @@ class AxiosService extends HttpRequest {
         })
     }
 
-    doPost(path, data) {
-        if (this.getIsDebug()) {
-            console.log("=============================")
-            console.log("Path: ", this.getBaseUrl() + path)
-            console.log("Method Type: POST")
-            console.log("Params: ", data)
-            console.log("=============================")
-        }
+    doPost(path, data) {        
         return new Promise((resolve, reject) => {
             this.post(path, data).then(res => {
                 if (res.data.status == 'SUCCESS') {
@@ -65,14 +52,7 @@ class AxiosService extends HttpRequest {
         })
     }
 
-    doPut(path, data){
-        if (this.getIsDebug()) {
-            console.log("=============================")
-            console.log("Path: ", this.getBaseUrl() + path)
-            console.log("Method Type: PUT")
-            console.log("Params: ", data)
-            console.log("=============================")
-        }
+    doPut(path, data){       
         return new Promise((resolve, reject) => {
             this.put(path, data).then(res => {
                 if (res.data.status == 'SUCCESS') {
@@ -86,19 +66,12 @@ class AxiosService extends HttpRequest {
         })
     }
 
-    doDelete(path) {
-        if (this.getIsDebug()) {
-            console.log("=============================")
-            console.log("Path: ", this.getBaseUrl() + path)
-            console.log("Method Type: DELETE")
-            console.log("=============================")
-        }
+    doDelete(path) {        
         return new Promise((resolve, reject) => {
             this.delete(path).then(res => {
                 if (res.data.status == 'SUCCESS') {
                     resolve(res.data)
-                } else {
-                    console.log('get err', res.data)
+                } else {                    
                     this.handleErrProcess(res.data)
                 }
             }).catch(err => {
@@ -112,8 +85,7 @@ class AxiosService extends HttpRequest {
     }
 
     handleErr(err, reject) {
-        if (err.response.status === 401) {
-            console.log(message401.title + message401.description)
+        if (err.response.status === 401) {            
             // swal({
             //     title: `Session timeout ${message401.title}`,
             //     text: "login agin ",

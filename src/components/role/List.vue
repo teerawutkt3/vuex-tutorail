@@ -73,8 +73,7 @@ export default {
       router.push({ path: "/role/form" });
     },
     async listRole() {
-      await axios.doGet("/api/role/").then(res => {
-        console.log("res: ", res.data);
+      await axios.doGet("/api/role/").then(res => {        
         this.roles = res.data;
         this.destroyDataTable();
       });

@@ -73,10 +73,8 @@ export default {
     };
   },
   methods: {
-    summary() {
-      console.log("rest-ws");
-      axios.doGet("/rest-ws/covid-19").then(res => {
-        console.log('res: ', res.data.body);
+    summary() {      
+      axios.doGet("/rest-ws/covid-19").then(res => {        
         
         this.result = res.data.body;
         this.numberTo = this.result.Recovered;
@@ -98,12 +96,10 @@ export default {
     theFormat(number) {
       return number.toFixed(0);
     },
-    completed() {
-      console.log("Animation ends!");
+    completed() {      
       this.scaleClass = true;
     },
-    playAnimation() {
-      console.log("Animation starts!");
+    playAnimation() {      
       this.scaleClass = false;
       this.$refs.Confirmed.play();
       this.$refs.Confirmed.play();

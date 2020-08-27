@@ -56,7 +56,7 @@
                   <textarea
                     v-model="form.description"
                     class="form-control"
-                    rows="4"
+                    rows="3"
                     placeholder="Enter description"
                   ></textarea>
                 </b-form-group>
@@ -93,14 +93,15 @@
                 <p><b class="text-danger">Pay: </b> {{ sumPay | currency }}</p>
                 <p><b class="text-success">Saving: </b> {{ sumSaving | currency }}</p>
                 <p><b class="text-info">Invest: </b> {{ sumInvest | currency }}</p>
-                 <b>Summary : {{summary | currency}}</b><br>
-                 <b>
+                <p><b>Summary :</b> {{summary | currency}}</p>
+                <p>
+                  <b>
                     Summary
-                    <span class="text-primary">bill active</span>
-                    : {{summaryBillActive | currency}}
-                  </b>
+                    <span class="text-primary">bill active</span></b>
+                    : {{summaryBillActive | currency}}                  
+                 </p>
               </b-col>
-            </b-row>
+            </b-row>            
           </template>
         </b-card>
       </b-col>
@@ -229,6 +230,12 @@ export default {
       sumInvest: 0,
     };
   },
+  filters:{
+    currency(value){
+        let val = (value/1).toFixed(2).replace('.', '.')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+  },
   methods: {
     checkHis(title) {
       let idx = this.histories.findIndex((e) => e.title == title);
@@ -248,18 +255,6 @@ export default {
     checkAll(event) {
       if (event.target.checked) {
         this.checkedIsShow = [];
-
-        // let objCanCheck = {};
-        // let canCheck = [];
-        // this.histories.forEach(element => {
-        //     let idx = this.items.findIndex(e=>e.title==element.title)
-        //     objCanCheck = this.items.splice(idx,1)
-        //     console.log('obj= >', objCanCheck);
-
-        //     canCheck.push(objCanCheck)
-        // });
-
-        // canCheck.forEach(e => {
         this.items.forEach((e) => {
           this.checkedIsShow.push(e.id);
         });

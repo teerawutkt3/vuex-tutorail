@@ -1,7 +1,7 @@
 <template >
   <div>
     <!-- light -->
-    <b-navbar toggleable="lg" type="dark" variant="dark" class="shadow-sm fixed-top">
+    <b-navbar toggleable="lg" type="light" variant="light" class="shadow-sm fixed-top">
       <b-navbar-brand to="/" href="javascript:void(0)">
         <img src="../assets/home.png" alt="logo" width="40px" >
       </b-navbar-brand>
@@ -41,7 +41,7 @@
             <template v-slot:button-content>
               <span>{{stateUser.profile.username}}</span>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#" to="/teerawut">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click="logout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -54,11 +54,9 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import AxiosService from "../common/service/axios-service";
 import router from "../router";
 import swal from "sweetalert";
 import Role from '../roles'
-const axios = new AxiosService();
 export default {
   data(){
     return {
@@ -80,10 +78,6 @@ export default {
       }).then(willDelete => {
         if (willDelete) {
           this.clearStateAll();
-          if (axios.getIsDebug) {
-            console.log("logout...");
-            console.log(this.stateUser);
-          }
           localStorage.removeItem("appToken");
           router.push({ path: "/auth" });
         }
@@ -95,8 +89,6 @@ export default {
   },
 
   created() {
-    console.log('getProfile');
-    
     this.getProfile();
   },
   computed: {

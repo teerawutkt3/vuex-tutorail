@@ -61,9 +61,7 @@ export default {
         })
         .catch(err => {
           swal("Login Error", err, "error");
-          this.dataRequest = { err: "401" };
-          if(axios.getIsDebug)
-            console.log("err: ", err);
+          this.dataRequest = { err: "401" };                      
         });
     },
     testPost() {
@@ -74,15 +72,12 @@ export default {
       axios
         .doPost("/api/user/testPost", data)
         .then(res => {
-          console.log("res => ", res);
           router.push({ path: "/home" });
           this.dataRequest = res;
         })
         .catch(err => {
           swal("Login Error", err, "error");
-          this.dataRequest = { err: "401" };
-          if(axios.getIsDebug)
-            console.log("err: " , err);
+          this.dataRequest = { err: "401" };          
         });
     },
     login(e) {
@@ -96,8 +91,7 @@ export default {
       this.loginText = "Login Success";
     },
 
-    logout() {
-      console.log("logout...");
+    logout() {      
       this.dataRequest = {};
       localStorage.removeItem("appToken");
       this.loginText = "Logout..";

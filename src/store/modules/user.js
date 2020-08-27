@@ -41,7 +41,6 @@ const mutations = {
             state.user.confirmPassword = ''
             state.mode = false
             axios.doGet(`/api/role-assignment/findByUserId/${state.user.id}`).then(res => {
-                console.log("assign : ", res)
                 state.roles = res.data
             })
         })
@@ -127,7 +126,6 @@ const actions = {
 }
 const getters = {
     getUser: (state) => {
-        console.log('state user=> ', state)
         return state
     },
 }
