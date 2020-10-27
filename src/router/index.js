@@ -32,6 +32,7 @@ const routes = [
             // ## Bill
             {path: '/bill', component: () => import('../views/Bill.vue')},
             {path: '/bill-form', component: () => import('../components/bill/BillForm.vue')},
+            {path: '/bill-history', component: () => import('../views/Bill/BillHistory.vue')},
             {path: '/covid19', component: () => import('../views/Covid-19')},
         ],
         

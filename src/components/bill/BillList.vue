@@ -9,6 +9,9 @@
         <h1 class="mb-5">Bill No. {{items.length}}</h1>
       </b-col>
       <b-col cols="5" class="text-right">
+        <b-btn :click="goHistory" color="outline-info">
+          <i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;history
+        </b-btn>&nbsp;
         <b-btn :click="goCreate" color="outline-warning">
           <icon icon="fa-sliders" />&nbsp;setting
         </b-btn>
@@ -111,6 +114,14 @@
         </b-card>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <apexchart width="100%" type="line" :options="options" :series="series"></apexchart>
+      </b-col>
+      <b-col>
+        <apexchart width="100%" height="350" type="bar" :options="chartOptions" :series="seriesBar"></apexchart>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -120,7 +131,9 @@ import swal from "sweetalert";
 import moment from "moment";
 import AxiosService from "../../common/service/axios-service";
 const axios = new AxiosService();
+import { Bar } from 'vue-chartjs'
 export default {
+  extends: Bar,
   name: "BillList",
   data() {
     return {
@@ -129,7 +142,47 @@ export default {
       summaryHis: 0,
       items: [],
       histories: [],
-      nowMonth: moment().format("MMMM YYYY")
+      nowMonth: moment().format("MMMM YYYY"),
+
+      //Chart
+      options: {
+        chart: {
+          id: 'vuechart-example'
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        }
+      },
+      series: [{
+        name: 'series-1',
+        data: [30, 40, 45, 50, 49, 60, 70, 91]
+      }],
+      chartOptions: {
+        chart: {
+          id: "basic-bar",
+          animations: {
+            speed: 200
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        plotOptions: {
+          bar: {
+            distributed: true
+          }
+        },
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995]
+        }
+      },
+      seriesBar: [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 30, 49]
+        }
+      ]
+    
     };
   },
   filters:{
@@ -141,6 +194,9 @@ export default {
   methods: {
     goCreate() {
       router.push({ path: "/bill-form" });
+    },
+    goHistory() {
+      router.push({ path: "/bill-history" });
     },
     findAll() {
       axios.doGet("/api/bill/bill-active").then(res => {
@@ -203,7 +259,7 @@ export default {
     }
   },
   created() {
-    this.findAll();
+    this.findAll();    
   }
 };
 </script>

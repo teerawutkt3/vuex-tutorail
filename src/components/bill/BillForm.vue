@@ -93,6 +93,7 @@
                 <p><b class="text-danger">Pay: </b> {{ sumPay | currency }}</p>
                 <p><b class="text-success">Saving: </b> {{ sumSaving | currency }}</p>
                 <p><b class="text-info">Invest: </b> {{ sumInvest | currency }}</p>
+                <p><b class="text-success">Sum Income, Invest: </b> {{ sumSaving+sumInvest | currency }}</p>
                 <p><b>Summary :</b> {{summary | currency}}</p>
                 <p>
                   <b>

@@ -14,6 +14,7 @@ import components from './component'
 import Vue2Filters from 'vue2-filters'
 import VueNumber from "vue-number-animation";
 import VueScrollTo from 'vue-scrollto'
+import VueApexCharts from 'vue-apexcharts'
 
 Vue.use(VueScrollTo)
 Vue.use(VueNumber);
@@ -21,6 +22,7 @@ Vue.use(Vue2Filters)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 
+Vue.component('apexchart', VueApexCharts)
 //==> Buttons component
 for (let i = 0; i < components.buttons.length; i++){
     Vue.component(components.buttons[i].name, components.buttons[i].component)
